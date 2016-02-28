@@ -1,0 +1,564 @@
+/**
+ *  If you want to override some bootstrap variables, you have to change values here.
+ *  The list of variables are listed here bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss
+ */
+$navbar-inverse-link-color: #5AADBB;
+$icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+
+/**
+ *  Do not remove the comments below. It's the markers used by wiredep to inject
+ *  sass dependencies when defined in the bower.json of your dependencies
+ */
+// bower:scss
+// endbower
+
+
+
+/**
+ *  Do not remove the comments below. It's the markers used by gulp-inject to inject
+ *  all your sass files automatically
+ */
+// injector
+// endinjector
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+  background: #FBFAFA;
+}
+
+.logo {
+  height: 46px;
+  background: #FBFAFA;
+  box-shadow: 0 1px 2px 2px #aeb0b4;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 1;
+
+  a {
+    padding: 10px 25px;
+    display: inline-block;
+  }
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 46px;
+  bottom: 0;
+  width: 275px;
+  background: #fff;
+
+  .sidebar-wrapper {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+
+  .edit {
+    height: 100px;
+    background: #287BC0;
+    text-align: right;
+
+    a {
+      color: #fff;
+      display: inline-block;
+      font-size: 11px;
+      text-decoration: underline;
+      padding: 25px;
+    }
+  }
+
+  .profile {
+    background: #223841;
+    color: #fff;
+    margin-bottom: 20px;
+    padding: 0 20px;
+    @include clearfix;
+
+    h4 {
+      font-size: 13px;
+      margin-bottom: 0;
+    }
+
+    h5 {
+      margin-top: 2px;
+      font-size: 12px;
+    }
+
+    .image-profile {
+      float: left;
+      margin-right: 10px;
+
+      img {
+        margin-top: -15px;
+        margin-bottom: -10px;
+      }
+    }
+  }
+
+  .menu {
+    margin-top: 50px;
+    margin-bottom: 40px;
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+
+      li {
+        margin-bottom: 5px;
+      }
+
+      a {
+        display: block;
+        padding: 10px 0 10px 30px;
+        line-height: 20px;
+
+        &:hover,
+        &:active {
+          background: #ececed;
+          border-right: 4px solid #b1b2b7;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .i-ubin {
+    display: inline-block;
+    width: 30px;
+    height: 17px;
+    float: left;
+    margin-right: 20px;
+    background: {
+      image: url('../assets/images/icons.png');
+      repeat: no-repeat;
+      position: 10px 3px;
+    }
+
+    &.i-search {
+      background: {
+        position: 10px -44px;
+      }
+    }
+    &.i-post {
+      background: {
+        position: 10px -92px;
+      }
+    }
+    &.i-my-post {
+      background: {
+        position: 10px -138px;
+      }
+    }
+    &.i-add-post {
+      background: {
+        position: 10px -183px;
+      }
+    }
+    &.i-favs {
+      background: {
+        position: 10px -229px;
+      }
+    }
+    &.i-message {
+      background: {
+        position: 10px -275px;
+      }
+    }
+  }
+
+  .session {
+    font-size: 11px;
+    padding: 0 40px;
+  }
+
+  .apps {
+    position: absolute;
+    left: 5px;
+    right: 0;
+    bottom: 0;
+
+    a {
+      padding: 0 0 20px 15px;
+      display: inline-block;
+    }
+  }
+}
+
+.content {
+  padding: 80px 45px 0 300px;
+
+  & > .row {
+    margin: 0;
+  }
+
+  .main {
+    padding-left: 40px;
+    background: {
+      image: url('../assets/images/ubin-icon.png');
+      repeat: no-repeat;
+    }
+    color: #287BC0;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 30px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .u-label {
+    padding-left: 30px;
+    position: relative;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 20px;
+    width: 100%;
+    color: #287BC0;
+
+    &:after {
+      left: 5px;;
+      top: 5px;;
+      position: absolute;
+      content: '';
+      width: 16px;
+      height: 10px;
+      background: {
+        image: url('../assets/images/arrow.png');
+        repeat: no-repeat;
+      }
+    }
+  }
+
+  .select {
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 1px 1px 1px 1px #D2D2D2;
+    border-radius: 5px;
+    background: #fff;
+    color: #287BC0;
+    padding-left: 10px;
+    position: relative;
+
+    &:after {
+      background: {
+        image: url('../assets/images/down.png');
+        repeat: no-repeat;
+      }
+      right: 5px;
+      top: 8px;
+      position: absolute;
+      content: '';
+      width: 24px;
+      height: 19px;
+    }
+
+    select {
+      background: transparent;
+      border: none;
+      width: 120%;
+      font-size: 14px;
+      height: 35px;
+      padding: 5px;
+
+      &:focus,
+      &:active {
+        outline: none;
+        box-shadow: none;
+      }
+    }
+  }
+
+  .padding-wrapper {
+    padding-left: 30px;
+  }
+
+  input {
+    width: 100%;
+    background: transparent;
+    color: #287BC0;
+    padding-left: 10px;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 2px solid #287BC0;
+    box-shadow: none;
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  button {
+    padding: 10px 60px;
+    margin-top: 20px;
+
+    & + button {
+      margin-left: 20px;
+    }
+  }
+}
+
+.search-tool {
+  margin-bottom: 30px;
+
+  input {
+    background: {
+      color: #dfe6f3;
+      image: url('../assets/images/search.png');
+      repeat: no-repeat;
+      position: 10px 4px;
+    };
+    border: 0;
+    height: 38px;
+    border-radius: 38px;
+
+  }
+}
+
+.post {
+  background: #fff;
+  box-shadow: 1px 1px 2px 2px #D2D2D2;
+  margin-bottom: 30px;
+
+  .post-image {
+    position: relative;
+
+    a {
+      position: absolute;
+
+      &.star {
+        right: 15px;
+        top: 15px;
+        width: 24px;
+        height: 22px;
+        background: {
+          image: url('../assets/images/star.png');
+          repeat: no-repeat;
+        }
+      }
+
+      &.action {
+        background: #223841;
+        bottom: 15px;
+        right: 15px;
+        padding: 6px 25px;
+        border-radius: 15px;
+        color: #fff;
+        font-size: 13px;
+        text-transform: uppercase;
+
+        &:hover,
+        &:active {
+          text-decoration: none;
+        }
+
+      }
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .post-name {
+    background: #287BC0;
+    z-index: 2;
+    position: relative;
+    height: 45px;
+    @include clearfix;
+
+    .post-name-image {
+      float: left;
+      margin-left: 30px;
+      margin-right: 15px;
+
+      img {
+        margin-top: -20px;
+        max-width: 56px;
+      }
+    }
+
+    p {
+      color: #fff;
+      padding: 12px;
+    }
+  }
+
+  h4 {
+    color: #287BC0;
+    font-size: 11px;
+    text-transform: uppercase;
+    margin-bottom: 0;
+  }
+
+  .price, .place {
+    font-size: 10px;
+    display: block;
+  }
+
+  .ago {
+    font-size: 9px;
+  }
+
+  .post-info {
+    padding: 10px 15px;
+  }
+}
+
+.single-post {
+  position: fixed;
+  left: 0;
+  top: 45px;
+  right: 0;
+  bottom: 0;
+
+  .rows {
+    @include clearfix;
+    position: relative;
+    height: 100%;
+  }
+
+  .col-50 {
+    float: left;
+    width: 50%;
+    height: 100%;
+    background: #fff;
+
+    & + .col-50 {
+      background: rgba(40, 123, 192, .25);
+    }
+  }
+
+  .singles {
+    padding: 80px;
+
+    img {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
+  .single-minis {
+    @include clearfix;
+
+    .mini {
+      float: left;
+      width: 25%;
+      padding-top: 2px;
+
+      & + .mini {
+        padding-left: 2px;
+      }
+    }
+  }
+
+  .action {
+    padding: 30px 40px;
+    text-align: right;
+    a{
+      background: #287BC0;
+      padding: 6px 25px;
+      border-radius: 15px;
+      color: #fff;
+      font-size: 13px;
+      text-transform: uppercase;
+
+      &:hover,
+      &:active {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .options {
+    background: #287BC0;
+    color: #fff;
+    @include clearfix;
+
+    span {
+      font-size: 11px;
+      line-height: 14px;
+      display: block;
+      margin-top: 10px;
+
+      & + span {
+        margin-top: 0;
+      }
+    }
+
+    .text-right {
+      padding-right: 30px;
+      padding-top: 10px;
+
+      span {
+        display: inline-block;
+        margin-right: 25px;
+        margin-top: 5px;
+      }
+    }
+  }
+
+  .single-img-pf {
+    float: left;
+    margin-right: 15px;
+
+    img {
+      margin-top: -30px;
+      max-width: 72px;
+      margin-left: 35px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .single-content {
+    padding: 30px 70px;
+    font-size: 12px;
+    color: #287BC0;
+  }
+
+  .comments {
+    border: 2px solid #287BC0;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .comment {
+    padding: 25px 15px;
+    background: rgba(40, 123, 192, .10);
+
+    span {
+      font-size: 10px;
+      color: #287BC0;
+      line-height: 12px;
+      display: inline-block;
+    }
+
+    .ago {
+      display: block;
+      color: #B1B1B1;
+      margin-top: 15px;
+    }
+
+    .who {
+      color: #000;
+    }
+  }
+
+  textarea {
+    width: 100%;
+    margin-bottom: -10px;
+    height: 80px;
+    border: 0;
+    border-top: 2px solid #287BC0;
+    padding: 10px;
+    font-size: 11px;
+  }
+}
