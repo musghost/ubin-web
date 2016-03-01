@@ -17,6 +17,8 @@ angular.module 'ubinWeb'
 
     vm.type = {}
 
+    vm.posts = []
+
     Crud.typePublication.query().$promise.then (result) ->
       vm.type.publication = result.results
     Crud.typeProperty.query().$promise.then (result) ->
@@ -25,6 +27,9 @@ angular.module 'ubinWeb'
       vm.minucipalities = result.results.reverse()
     Crud.currencies.query().$promise.then (result) ->
       vm.currencies = result
+
+    Crud.publicationsFilter.query({user__id: LoginUser.getId()}).$promise.then (result) ->
+      vm.posts = result.results
     
     vm.post =
       file: []
@@ -67,7 +72,7 @@ angular.module 'ubinWeb'
         data: formData
         async: false
         success: () ->
-          console.log 'kjhd'
+          $state.go 'post'
         error: () ->
           console.log 'kjdfjfjfjj'
         cache: false
