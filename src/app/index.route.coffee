@@ -17,6 +17,9 @@ angular.module 'ubinWeb'
         templateUrl: 'app/post/post.html'
         controller: 'PostController'
         controllerAs: 'post'
+      .state 'post.create',
+        url: '/create'
+        templateUrl: 'app/post/create.html'
       .state 'single',
         url: '/single'
         templateUrl: 'app/single-post/single.html'
@@ -24,8 +27,8 @@ angular.module 'ubinWeb'
         controllerAs: 'single'
       .state 'login',
         url: '/login'
-        templateUrl: 'app/single-post/single.html'
-        controller: 'SingleController'
-        controllerAs: 'single'
+        templateUrl: 'app/login/login.html'
+        controller: 'LoginController'
+        controllerAs: 'login'
 
     $urlRouterProvider.otherwise '/'

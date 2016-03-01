@@ -1,136 +1,126 @@
 <div class="row">
   <div class="col-sm-8">
     <h2 class="main">Buscar publicaciones</h2>
-    <div class="form-group">
-      <label class="u-label">
-        <span>Palabra Clave:</span>
-      </label>
-      <div class="padding-wrapper">
-        <input type="text" class="form-control" ng-model="search.search.word">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="u-label">
-        <span>Tipo de publicación:</span>
-      </label>
-      <div class="padding-wrapper">
-        <div class="select">
-          <select ng-options="type.name for type in search.types track by type.id">
-            <option value=""></option>
-          </select>
+    <form ng-submit="search.performSearch()">
+      <div class="form-group">
+        <label class="u-label">
+          <span>Palabra Clave:</span>
+        </label>
+        <div class="padding-wrapper">
+          <input type="text" class="form-control" ng-model="search.search.word">
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label class="u-label">
-            <span>Municipio:</span>
-          </label>
-          <div class="padding-wrapper">
-            <div class="select">
-              <select>
-                <option></option>
-                <option>Distrito Federal</option>
-              </select>
+      <div class="form-group">
+        <label class="u-label">
+          <span>Tipo de publicación:</span>
+        </label>
+        <div class="padding-wrapper">
+          <div class="select">
+            <select ng-options="type.id as type.name for type in search.type.publication track by type.id" ng-model="search.search.type_publications__id">
+              <option value=""></option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="u-label">
+              <span>Municipio:</span>
+            </label>
+            <div class="padding-wrapper">
+              <div class="select">
+                <select ng-options="type.id as type.name for type in search.minucipalities track by type.id" ng-model="search.search.town__id" ng-change="search.setNeighborhood()">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="u-label">
+              <span>Colonia:</span>
+            </label>
+            <div class="padding-wrapper">
+              <div class="select">
+                <select ng-options="type.id as type.name for type in search.neighborhood track by type.id" ng-model="search.search.neighborhood__id">
+                  <option value=""></option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label class="u-label">
-            <span>Colonia:</span>
-          </label>
-          <div class="padding-wrapper">
-            <div class="select">
-              <select>
-                <option></option>
-                <option>Distrito Federal</option>
-              </select>
+      <div class="form-group">
+        <label class="u-label">
+          <span>Tipo de inmueble:</span>
+        </label>
+        <div class="padding-wrapper">
+          <div class="select">
+            <select ng-options="type.id as type.name for type in search.type.property track by type.id" ng-model="search.search.type_property__id">
+              <option value=""></option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="u-label">
+              <span>Superfiecie aproximada:</span>
+            </label>
+            <div class="padding-wrapper">
+              <input type="number" class="form-control" ng-model="search.search.area" min="0">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="u-label">
+              <span>Baños:</span>
+            </label>
+            <div class="padding-wrapper">
+              <div class="select">
+                <select ng-model="search.search.bathrooms">
+                  <option value=""></option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label class="u-label">
-        <span>Tipo de inmueble:</span>
-      </label>
-      <div class="padding-wrapper">
-        <div class="select">
-          <select>
-            <option></option>
-            <option>Distrito Federal</option>
-          </select>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="u-label">
+              <span>Precio mínimo:</span>
+            </label>
+            <div class="padding-wrapper">
+              <input type="number" class="form-control" ng-model="search.search.from_price" min="0">
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label class="u-label">
-            <span>Superfiecie aproximada:</span>
-          </label>
-          <div class="padding-wrapper">
-            <div class="select">
-              <select>
-                <option></option>
-                <option>Distrito Federal</option>
-              </select>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="u-label">
+              <span>Precio máximo:</span>
+            </label>
+            <div class="padding-wrapper">
+              <input type="number" class="form-control" ng-model="search.search.to_price" min="0">
             </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label class="u-label">
-            <span>Baños:</span>
-          </label>
-          <div class="padding-wrapper">
-            <div class="select">
-              <select>
-                <option></option>
-                <option>Distrito Federal</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label class="u-label">
-            <span>Precio mínimo:</span>
-          </label>
-          <div class="padding-wrapper">
-            <div class="select">
-              <select>
-                <option></option>
-                <option>Distrito Federal</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label class="u-label">
-            <span>Precio máximo:</span>
-          </label>
-          <div class="padding-wrapper">
-            <div class="select">
-              <select>
-                <option></option>
-                <option>Distrito Federal</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <button class="btn btn-primary">Buscar</button>
-    <button class="btn btn-primary">Cancelar</button>
+      <pre>{{search.search}}</pre>
+      <button class="btn btn-primary" type="submit">Buscar</button>
+      <button class="btn btn-primary">Cancelar</button>
+    </form>
   </div>
 </div>

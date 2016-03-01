@@ -1,0 +1,171 @@
+<div class="row">
+  <div class="col-sm-8">
+    <h2 class="main">Añadir publicación</h2>
+    <form ng-submit="post.savePost()">
+      <div class="form-group">
+        <label class="u-label">
+          <span>Número de lona o código:</span>
+        </label>
+        <div class="padding-wrapper">
+          <input type="text" class="form-control" ng-model="post.post.canvas_number">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="u-label">
+          <span>Tipo de publicación:</span>
+        </label>
+        <div class="padding-wrapper">
+          <div class="select">
+            <select ng-options="type.id as type.name for type in post.type.publication track by type.id" ng-model="post.post.type_publications">
+              <option value=""></option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="u-label">
+          <span>Tipo de inmueble:</span>
+        </label>
+        <div class="padding-wrapper">
+          <div class="select">
+            <select ng-options="type.id as type.name for type in post.type.property track by type.id" ng-model="post.post.type_property">
+              <option value=""></option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="u-label">
+              <span>Municipio:</span>
+            </label>
+            <div class="padding-wrapper">
+              <div class="select">
+                <select ng-options="type.id as type.name for type in post.minucipalities track by type.id" ng-model="post.post.town__id" ng-change="post.setNeighborhood()">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="u-label">
+              <span>Colonia:</span>
+            </label>
+            <div class="padding-wrapper">
+              <div class="select">
+                <select ng-options="type.id as type.name for type in post.neighborhood track by type.id" ng-model="post.post.neighborhood">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="u-label">
+          <span>Título de la publicación:</span>
+        </label>
+        <div class="padding-wrapper">
+          <input type="text" class="form-control" ng-model="post.post.title">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="u-label">
+          <span>Descripción del anuncio:</span>
+        </label>
+        <div class="padding-wrapper">
+          <input type="text" class="form-control" ng-model="post.post.description">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="u-label">
+              <span>Precio:</span>
+            </label>
+            <div class="padding-wrapper">
+              <input type="number" class="form-control" ng-model="post.post.price_first">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="radio-inline u-label" ng-repeat="currency in post.currencies">
+              <input type="radio" name="currency" ng-model="post.post.currency" ng-value="currency.id"> {{currency.name}}
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="u-label">
+              <span>Baños:</span>
+            </label>
+            <div class="padding-wrapper">
+              <div class="select">
+                <select ng-model="post.post.bathrooms">
+                  <option value=""></option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="u-label">
+              <span>Antigüedad:</span>
+            </label>
+            <div class="padding-wrapper">
+              <input type="number" class="form-control" ng-model="post.post.antiquity" min="0">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="u-label">
+              <span>Metros (terreno):</span>
+            </label>
+            <div class="padding-wrapper">
+              <input type="text" class="form-control" ng-model="post.post.area">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="u-label">
+              <span>Metros (construcción):</span>
+            </label>
+            <div class="padding-wrapper">
+              <input type="text" class="form-control" ng-model="post.post.construction_area">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label class="u-label">Fotos (máx 5):</label>
+        <input type="file" file="post.post.photos[0]">
+        <input type="file" file="post.post.photos[1]">
+        <input type="file" file="post.post.photos[2]">
+        <input type="file" file="post.post.photos[3]">
+        <input type="file" file="post.post.photos[4]">
+      </div>
+
+      <pre>{{post.post}}</pre>
+
+      <button class="btn btn-primary" type="submit">Buscar</button>
+      <button class="btn btn-primary">Cancelar</button>
+    </form>
+  </div>
+</div>

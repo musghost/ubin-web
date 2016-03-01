@@ -1,11 +1,12 @@
 <div class="container">
-  <form class="form-signin">
+  <form class="form-signin" ng-submit="login.login($event)">
     <h2 class="form-signin-heading">Ubin</h2>
     <label for="inputEmail" class="sr-only">Correo electrónico</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Correo electrónico" ng-model="main.data.email" required autofocus>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Correo electrónico" ng-model="login.data.email" required>
     <label for="inputPassword" class="sr-only">Contraseña</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" ng-model="main.data.password" required>
-    <uib-alert ng-repeat="alert in main.alert.alerts" type="{{alert.type}}" close="main.alert.closeAlert($index)">{{alert.msg}}</uib-alert>
-    <button class="btn btn-lg btn-primary btn-block" type="button" ng-click="main.sendData()">Entrar</button>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" ng-model="login.data.password" required>
+    <uib-alert ng-repeat="alert in login.alert.alerts" type="{{alert.type}}" close="login.alert.closeAlert($index)">{{alert.msg}}</uib-alert>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+    <pre>{{login.data}}</pre>
   </form>
 </div>
