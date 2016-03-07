@@ -15,7 +15,9 @@ angular.module 'ubinWeb'
         if response.data.token?
           $cookies.put 'token', response.data.token
           $cookies.put 'id', response.data.user.id
-          $state.go 'home'
+          $cookies.put 'name', "#{response.data.user.name} #{response.data.user.last_name}"
+          $cookies.put 'photo', response.data.user.photo
+          $state.go 'home', {}, {reload: true}
         return
       return
     return

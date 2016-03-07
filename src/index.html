@@ -27,18 +27,12 @@
     <div class="logo">
       <a ui-sref="post"><img src="assets/images/ubin.png"></a>
     </div>
-    <div class="sidebar">
+    <div class="sidebar" showsidebar>
       <div class="sidebar-wrapper">
         <div class="edit">
           <a href="#">Editar Perfil</a>
         </div>
-        <div class="profile">
-          <div class="image-profile">
-            <img src="assets/images/position/profile.png">
-          </div>
-          <h4>Andrés Vigorena R.</h4>
-          <h5>Estado de México</h5>
-        </div>
+        <profile></profile>
         <div class="menu">
           <ul>
             <li>
@@ -60,7 +54,7 @@
               <a ui-sref="favs"><i class="i-ubin i-favs"></i> Mis Favoritos</a>
             </li>
             <li>
-              <a href="#"><i class="i-ubin i-message"></i> Notificaciones</a>
+              <a ui-sref="notifications"><i class="i-ubin i-message"></i> Notificaciones</a>
             </li>
           </ul>
         </div>

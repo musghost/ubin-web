@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-sm-8">
+    <h2 class="main">Notificaciones</h2>
+    <div class="notification" ng-repeat="n in notification.notifications">
+      <label class="u-label">
+        <span>¡Mensaje nuevo!</span>
+      </label>
+      <span>En la publicación <a ui-sref="single({id: n.publication.id})">{{n.publication.title}}</a></span>
+      <p>{{n.message}}</p>
+    </div>
+  </div>
+</div>

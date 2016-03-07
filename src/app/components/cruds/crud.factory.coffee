@@ -16,3 +16,4 @@ angular.module 'ubinWeb'
     comment: $resource "#{api}/comment/", {}, {query: {method: 'GET', isArray: false}}
     commentsFilter: $resource "#{api}/commentsFilter/", {}, {query: {method: 'GET', isArray: false}}
     favoritesFilter: $resource "#{api}/favoritesFilter/", {}, {query: {method: 'GET', isArray: false}}
+    notificationsFilter: $resource "#{api}/notificationsFilter/", {}, {query: {method: 'GET', isArray: false}}

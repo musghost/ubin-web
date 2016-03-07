@@ -7,6 +7,5 @@
     <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" ng-model="login.data.password" required>
     <uib-alert ng-repeat="alert in login.alert.alerts" type="{{alert.type}}" close="login.alert.closeAlert($index)">{{alert.msg}}</uib-alert>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-    <pre>{{login.data}}</pre>
   </form>
 </div>
