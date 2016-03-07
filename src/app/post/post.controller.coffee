@@ -11,9 +11,29 @@ angular.module 'ubinWeb'
       scope:
         file: '='
     }
-  .controller 'PostController', ($state, Crud, $http, LoginUser) ->
+  .controller 'PostsController', ($state, Crud, $http, LoginUser, base) ->
     'ngInject'
-    vm = this
+    vm = @
+    vm.base = base
+    Crud.publicationsFilter.query({page_size: 100, ordering: '-date'}).$promise.then (result) ->
+      vm.posts = result.results
+    return
+  .controller 'FavsController', ($state, Crud, $http, LoginUser, base) ->
+    'ngInject'
+    vm = @
+    vm.base = base
+    Crud
+      .favoritesFilter
+      .query({page_size: 100, ordering: '-publication__date', user__id: LoginUser.getId(), status: true})
+      .$promise.then (result) ->
+        vm.posts = result.results.map (current) ->
+          current.publication
+    return
+  .controller 'PostController', ($scope, $state, Crud, $http, LoginUser, base) ->
+    'ngInject'
+    vm = @
+
+    vm.base = base
 
     vm.type = {}
 
@@ -84,5 +104,20 @@ angular.module 'ubinWeb'
       .error () ->
         console.log 'bad'
       return
+
+    vm.fav = (event, selectedPost) ->
+      event.preventDefault()
+      favParams =
+        publication: selectedPost.id
+        user: LoginUser.getId()
+
+      console.log selectedPost.isfavorite
+      if selectedPost.isfavorite
+        fav = new Crud.unFavorite(favParams)
+      else
+        fav = new Crud.favorite(favParams)
+
+      fav.$save().then () ->
+        selectedPost.isfavorite = !selectedPost.isfavorite
 
     return

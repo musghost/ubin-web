@@ -20,8 +20,18 @@ angular.module 'ubinWeb'
       .state 'post.create',
         url: '/create'
         templateUrl: 'app/post/create.html'
+      .state 'posts',
+        url: '/posts'
+        templateUrl: 'app/post/post.html'
+        controller: 'PostsController'
+        controllerAs: 'post'
+      .state 'favs',
+        url: '/favs'
+        templateUrl: 'app/post/post.html'
+        controller: 'FavsController'
+        controllerAs: 'post'
       .state 'single',
-        url: '/single'
+        url: '/single/:id'
         templateUrl: 'app/single-post/single.html'
         controller: 'SingleController'
         controllerAs: 'single'

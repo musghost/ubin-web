@@ -1,3 +1,5 @@
+moment.locale('es')
+
 angular.module 'ubinWeb'
   .run ($log) ->
     'ngInject'

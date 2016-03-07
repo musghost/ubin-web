@@ -38,3 +38,10 @@ angular.module 'ubinWeb'
     delete: ->
       $cookies.remove 'id'
       $cookies.remove 'token'
+    setLocation: (location) ->
+      $cookies.put 'country', location.country
+      $cookies.put 'state', location.state
+    getLocation: ->
+      location =
+        country: $cookies.get 'country'
+        state: $cookies.get 'state'

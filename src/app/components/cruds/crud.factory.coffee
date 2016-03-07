@@ -10,3 +10,9 @@ angular.module 'ubinWeb'
     townFilter: $resource "#{api}/townFilter/", {}, {query: {method: 'GET', isArray: false}}
     neighborhoodFilter: $resource "#{api}/neighborhoodFilter/", {}, {query: {method: 'GET', isArray: false}}
     currencies: $resource "#{api}/currencies/"
+    stateFilter: $resource "#{api}/stateFilter/", {}, {query: {method: 'GET', isArray: false}}
+    favorite: $resource "#{api}/favorite/", {}, {query: {method: 'GET', isArray: false}}
+    unFavorite: $resource "#{api}/unfavorite/", {}, {query: {method: 'GET', isArray: false}}
+    comment: $resource "#{api}/comment/", {}, {query: {method: 'GET', isArray: false}}
+    commentsFilter: $resource "#{api}/commentsFilter/", {}, {query: {method: 'GET', isArray: false}}
+    favoritesFilter: $resource "#{api}/favoritesFilter/", {}, {query: {method: 'GET', isArray: false}}

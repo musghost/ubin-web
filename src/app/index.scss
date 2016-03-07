@@ -343,6 +343,11 @@ html {
           image: url('../assets/images/star.png');
           repeat: no-repeat;
         }
+
+        &:hover,
+        &.fav {
+          background-position: -1px -23px;
+        }
       }
 
       &.action {
@@ -368,6 +373,16 @@ html {
     }
   }
 
+  .post-image-background {
+    height: 233px;
+    width: 100%;
+    background: {
+      repeat: no-repeat;
+      position: 50% 50%;
+      size: cover;
+    }
+  }
+
   .post-name {
     background: #287BC0;
     z-index: 2;
@@ -380,15 +395,27 @@ html {
       margin-left: 30px;
       margin-right: 15px;
 
-      img {
+      .post-user-image {
+        display: inline-block;
+        width: 55px;
+        height: 55px;
+        float: left;
         margin-top: -20px;
-        max-width: 56px;
+        background: {
+          repeat: no-repeat;
+          size: auto 56px;
+          position: 50% 50%;
+          image: url('../assets/images/position/profile.png');
+        }
+        border-radius: 50%;
+        border: 2px solid #fff;
       }
     }
 
     p {
       color: #fff;
       padding: 12px;
+      line-height: 13px;
     }
   }
 
@@ -431,6 +458,7 @@ html {
     width: 50%;
     height: 100%;
     background: #fff;
+    overflow-y: scroll;
 
     & + .col-50 {
       background: rgba(40, 123, 192, .25);

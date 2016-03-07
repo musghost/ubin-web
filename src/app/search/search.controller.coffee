@@ -1,5 +1,5 @@
 angular.module 'ubinWeb'
-  .controller 'SearchController', (Crud) ->
+  .controller 'SearchController', (Crud, LoginUser) ->
     vm = @
     vm.search = {}
     vm.type = {}
@@ -8,7 +8,7 @@ angular.module 'ubinWeb'
       vm.type.publication = result.results
     Crud.typeProperty.query().$promise.then (result) ->
       vm.type.property = result.results
-    Crud.townFilter.query({state__id: 9, page_size: 1000}).$promise.then (result) ->
+    Crud.townFilter.query({state__id: LoginUser.getLocation().state, page_size: 1000}).$promise.then (result) ->
       vm.minucipalities = result.results.reverse()
 
     vm.setNeighborhood = () ->

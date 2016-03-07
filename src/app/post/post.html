@@ -6,18 +6,18 @@
       </div>
     </div>
   </div>
-
   <div class="row">
     <div class="col-sm-4" ng-repeat="p in post.posts">
       <div class="post">
         <div class="post-image">
-          <img ng-src="http://45.55.170.108/media/{{p.photos[0].hash_name}}">
-          <a href="#" class="star"></a>
-          <a href="#" class="action">{{p.type_publications.name}}</a>
+          <div class="post-image-background" style="background-image: url('{{post.base}}media/{{p.photos[0].hash_name}}');"></div>
+          <a href="#" class="star" ng-class="{fav: p.isfavorite}" ng-click="post.fav($event, p)"></a>
+          <a ui-sref="single({id: p.id})" class="action">{{p.type_publications.name}}</a>
         </div>
         <div class="post-name">
           <div class="post-name-image">
-            <img src="assets/images/position/profile.png">
+            <div ng-show="p.user.photo" class="post-user-image" style="background-image: url('{{post.base}}media/{{p.user.photo}}');"></div>
+            <div ng-hide="p.user.photo" class="post-user-image"></div>
           </div>
           <p>{{p.user.name}} {{p.user.last_name}}</p>
         </div>
@@ -26,7 +26,7 @@
           <span class="place">{{p.town.name}}, {{p.state.name}}</span>
           <span class="price">${{p.price_first}} {{p.currency.name}}</span>
           <div class="text-right">
-            <span class="ago">{{p.date}}.</span>
+            <span class="ago">{{p.date | Ago}}.</span>
           </div>
         </div>
       </div>

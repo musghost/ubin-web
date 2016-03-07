@@ -3,19 +3,16 @@
     <div class="col-50">
       <div class="singles">
         <div class="single-img">
-          <img src="assets/images/position/single.png">
+          <img ng-src="{{single.base}}media/{{single.post.photos[0].hash_name}}">
         </div>
         <div class="single-minis">
-          <div class="mini"><img src="assets/images/position/single.png"></div>
-          <div class="mini"><img src="assets/images/position/single.png"></div>
-          <div class="mini"><img src="assets/images/position/single.png"></div>
-          <div class="mini"><img src="assets/images/position/single.png"></div>
+          <div class="mini" ng-repeat="photo in single.post.photos" ng-hide="$index == 0"><img ng-src="{{single.base}}media/{{photo.hash_name}}"></div>
         </div>
       </div>
     </div>
     <div class="col-50">
       <div class="action">
-        <a href="#">Renta</a>
+        <a href="#">{{single.post.type_publications.name}}</a>
       </div>
       <div class="options">
         <div class="row">
@@ -24,11 +21,11 @@
               <img src="assets/images/position/profile.png">
             </div>
             <span>Publicado por</span>
-            <span>Sofía Camarena</span>
+            <span>{{single.post.user.name}} {{single.post.user.last_name}}</span>
           </div>
           <div class="col-sm-6">
             <div class="text-right">
-              <span>Hace 12min</span>
+              <span>{{single.post.date | Ago}}</span>
               <span class="link-options">
                 <img src="assets/images/position/buttons.png">
               </span>
@@ -37,34 +34,32 @@
         </div>
       </div>
       <div class="single-content">
-        <p># De lona: 54</p>
-        <p>Tipo de inmueble: Nave Industrial<br>
-Municipio: Naucalpan de Juáerz, Edo.de Mex.<br>
-Colonia: San Francisco Cuautlalpan</p>
+        <p># De lona: {{single.post.canvas_number}}</p>
+        <p>Tipo de inmueble: {{single.post.type_property.name}}<br>
+Municipio: {{single.post.town}}, {{single.post.state}}.<br>
+Colonia: {{single.post.neighborhood.name}}</p>
 
-        <p>Descripción: Naves industriales con un terreno de 8,500 m2, 126m de frente, en esquina con periférico, a un minuto del proyecto del toreo. Área de maniobras, rampas de carga, vigilancia.</p>
+        <p>Descripción: {{single.post.description}}.</p>
 
-        <p>Precio: $125,000,000.00 MXN</p>
+        <p>Precio: ${{single.post.price_first}} {{single.post.currency.code}}</p>
 
-        <p>Baños: 2 <br>
-Antiguedad: 15</p>
+        <p>Baños: {{single.post.bathrooms}} <br>
+Antiguedad: {{single.post.antiquity}} años</p>
 
-        <p>Superficie:</p>
-
-        <p>Terreno: 120 m2<br>
-Construcción: 120 m2</p>
+        <p>Terreno: {{single.post.area}} m2<br>
+Construcción: {{single.post.construction_area}} m2</p>
 
         <div class="comments">
-          <div class="comment">
+          <div class="comment" ng-repeat="comment in single.comments">
             <div>
-              <span class="who">andresvigo dice:</span>
-              <span>Conozco el fraccionamiento</span><br>
-              <span>¿En qué calle está la casa?</span>
-              <span class="ago">Hace 22 minutos</span>
+              <span class="who">{{comment.user.name}} {{comment.user.last_name}} dice:</span>
+              <span>{{comment.comment}}</span>
+              <span class="ago">{{comment.date | Ago}}</span>
             </div>
           </div>
-          <textarea>Escribe un comentario</textarea>
+          <textarea placeholder="Escribe un comentario" ng-model="single.comment.comment"></textarea>
         </div>
+        <button type="button" ng-click="single.pushComment()">Guardar</button>
       </div>
     </div>
   </div>

@@ -7,10 +7,7 @@
       </label>
       <div class="padding-wrapper">
         <div class="select">
-          <select>
-            <option></option>
-            <option>México</option>
-          </select>
+          <select ng-options="country.id as country.name for country in main.countries" ng-model="main.location.country"></select>
         </div>
       </div>
     </div>
@@ -20,21 +17,10 @@
       </label>
       <div class="padding-wrapper">
         <div class="select">
-          <select>
-            <option></option>
-            <option>Distrito Federal</option>
-          </select>
+          <select ng-options="state.id as state.name for state in main.states" ng-model="main.location.state"></select>
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <label class="u-label">
-        <span>Palabra Clave:</span>
-      </label>
-      <div class="padding-wrapper">
-        <input type="text" class="form-control">
-      </div>
-    </div>
-    <button class="btn btn-primary">Aceptar</button>
+    <button class="btn btn-primary" ng-click="main.setLocation()">Aceptar</button>
   </div>
 </div>
