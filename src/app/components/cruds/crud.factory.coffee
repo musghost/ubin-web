@@ -17,3 +17,5 @@ angular.module 'ubinWeb'
     commentsFilter: $resource "#{api}/commentsFilter/", {}, {query: {method: 'GET', isArray: false}}
     favoritesFilter: $resource "#{api}/favoritesFilter/", {}, {query: {method: 'GET', isArray: false}}
     notificationsFilter: $resource "#{api}/notificationsFilter/", {}, {query: {method: 'GET', isArray: false}}
+    myUser: $resource "#{api}/users/:userId/", {userId: '@id'}, {query: {method: 'GET', isArray: false}}
+    user: $resource "#{api}/user/:userId/", {userId: '@id'}, {query: {method: 'GET', isArray: false}, update: {method: 'PATCH'}}

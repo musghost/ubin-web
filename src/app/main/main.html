@@ -7,7 +7,7 @@
       </label>
       <div class="padding-wrapper">
         <div class="select">
-          <select ng-options="country.id as country.name for country in main.countries" ng-model="main.location.country"></select>
+          <select ng-options="country.id as country.name for country in main.countries track by country.id" ng-model="main.location.country"></select>
         </div>
       </div>
     </div>
@@ -17,7 +17,7 @@
       </label>
       <div class="padding-wrapper">
         <div class="select">
-          <select ng-options="state.id as state.name for state in main.states" ng-model="main.location.state"></select>
+          <select ng-options="state.id as state.name for state in main.states track by state.id" ng-model="main.location.state"></select>
         </div>
       </div>
     </div>

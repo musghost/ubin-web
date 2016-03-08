@@ -6,6 +6,9 @@ angular.module 'ubinWeb'
 
     Crud.country.query({page_size: 1000}).$promise.then (result) ->
       vm.countries = result.results
+      if LoginUser.getLocation()?
+        vm.location = LoginUser.getLocation()
+        console.log vm.location
 
     Crud.stateFilter.query().$promise.then (result) ->
       vm.states = result.results

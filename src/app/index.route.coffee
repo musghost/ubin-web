@@ -35,6 +35,11 @@ angular.module 'ubinWeb'
         templateUrl: 'app/single-post/single.html'
         controller: 'SingleController'
         controllerAs: 'single'
+      .state 'edit',
+        url: '/edit'
+        templateUrl: 'app/edit/edit.html'
+        controller: 'EditController'
+        controllerAs: 'edit'
       .state 'notifications',
         url: '/notifications'
         templateUrl: 'app/notification/notification.html'
