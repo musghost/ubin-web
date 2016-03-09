@@ -317,7 +317,8 @@ html {
       image: url('../assets/images/search.png');
       repeat: no-repeat;
       position: 10px 4px;
-    };
+    }
+    padding-left: 50px;
     border: 0;
     height: 38px;
     border-radius: 38px;
@@ -335,6 +336,10 @@ html {
 
     a {
       position: absolute;
+
+      &.post-link {
+        position: static;
+      }
 
       &.star {
         right: 15px;
@@ -534,6 +539,24 @@ html {
         margin-top: 5px;
       }
     }
+
+    a {
+      display: inline-block;
+      width: 22px;
+      height: 18px;
+      background: {
+        image: url('../assets/images/position/buttons.png');
+        repeat: no-repeat;
+      }
+
+      &.icon-mail {
+        background-position: -30px 0;
+      }
+
+      &.icon-tel {
+        background-position: -60px 0;
+      }
+    }
   }
 
   .single-img-pf {
@@ -646,5 +669,13 @@ html {
     margin-left: 30px;
     color: #287BC0;
     border-bottom: 2px solid #287BC0;
+  }
+}
+
+.radios {
+  .u-label {
+    width: auto;
+    padding-left: 50px;
+    margin-right: 20px;
   }
 }

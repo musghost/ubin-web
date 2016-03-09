@@ -31,6 +31,9 @@ angular.module 'ubinWeb'
           res.message = 'Hubo un error con el servicio, inténtelo más tarde.'
           deferred.reject res
       deferred.promise
+    logout: ->
+      $cookies.remove 'token'
+      $cookies.remove 'id'
     getToken: ->
       $cookies.get 'token'
     getId: ->

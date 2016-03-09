@@ -11,14 +11,15 @@ angular.module 'ubinWeb'
       scope:
         file: '='
     }
-  .controller 'PostsController', ($state, Crud, $http, LoginUser, base) ->
+  .controller 'PostsController', ($state, Crud, $http, LoginUser, base, Fav) ->
     'ngInject'
     vm = @
     vm.base = base
     Crud.publicationsFilter.query({page_size: 100, ordering: '-date'}).$promise.then (result) ->
       vm.posts = result.results
+    vm.fav = Fav.fav
     return
-  .controller 'FavsController', ($state, Crud, $http, LoginUser, base) ->
+  .controller 'FavsController', ($state, Crud, $http, LoginUser, base, Fav) ->
     'ngInject'
     vm = @
     vm.base = base
@@ -28,6 +29,7 @@ angular.module 'ubinWeb'
       .$promise.then (result) ->
         vm.posts = result.results.map (current) ->
           current.publication
+    vm.fav = Fav.fav
     return
   .controller 'PostController', ($scope, $state, Crud, $http, LoginUser, base) ->
     'ngInject'
@@ -111,7 +113,6 @@ angular.module 'ubinWeb'
         publication: selectedPost.id
         user: LoginUser.getId()
 
-      console.log selectedPost.isfavorite
       if selectedPost.isfavorite
         fav = new Crud.unFavorite(favParams)
       else

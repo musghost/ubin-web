@@ -27,7 +27,9 @@
             <div class="text-right">
               <span>{{single.post.date | Ago}}</span>
               <span class="link-options">
-                <img src="assets/images/position/buttons.png">
+                <a ui-sref="user({id: single.post.user.id})" class="icon-user"></a>
+                <a href="mailto:{{single.post.user.email}}" class="icon-mail"></a>
+                <a href="tel:{{single.post.user.phone}}" class="icon-tel"></a>
               </span>
             </div>
           </div>
@@ -36,7 +38,7 @@
       <div class="single-content">
         <p># De lona: {{single.post.canvas_number}}</p>
         <p>Tipo de inmueble: {{single.post.type_property.name}}<br>
-Municipio: {{single.post.town}}, {{single.post.state}}.<br>
+Municipio: {{single.post.town.name}}, {{single.post.state.name}}.<br>
 Colonia: {{single.post.neighborhood.name}}</p>
 
         <p>Descripción: {{single.post.description}}.</p>

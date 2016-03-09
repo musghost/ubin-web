@@ -35,6 +35,11 @@ angular.module 'ubinWeb'
         templateUrl: 'app/single-post/single.html'
         controller: 'SingleController'
         controllerAs: 'single'
+      .state 'user',
+        url: '/user/:id'
+        templateUrl: 'app/user/user.html'
+        controller: 'UserController'
+        controllerAs: 'post'
       .state 'edit',
         url: '/edit'
         templateUrl: 'app/edit/edit.html'
@@ -50,5 +55,10 @@ angular.module 'ubinWeb'
         templateUrl: 'app/login/login.html'
         controller: 'LoginController'
         controllerAs: 'login'
+      .state 'logout',
+        url: '/logout'
+        templateUrl: 'app/logout/logout.html'
+        controller: 'LogoutController'
+        controllerAs: 'logout'
 
     $urlRouterProvider.otherwise '/'
