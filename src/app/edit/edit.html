@@ -28,19 +28,45 @@
       </div>
       <div class="form-group">
         <label class="u-label">
-          <span>Nombre de su empresa:</span>
+          <span>Contraseña:</span>
         </label>
         <div class="padding-wrapper">
-          <input type="text" class="form-control" ng-model="edit.user.property_company_name">
+          <input type="password" class="form-control" ng-model="edit.password">
         </div>
       </div>
       <div class="form-group">
         <label class="u-label">
-          <span>Teléfono de su oficina:</span>
+          <span>Tipo de usuario:</span>
+        </label>
+        <div class="padding-wrapper">
+          <div class="select">
+            <select ng-options="type.id as type.name for type in edit.types" ng-model="edit.user.type_advisor"></select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="u-label">
+          <span>Teléfono celular:</span>
         </label>
         <div class="padding-wrapper">
           <input type="text" class="form-control" ng-model="edit.user.property_company_phone">
         </div>
+      </div>
+      <div class="form-group">
+        <label class="u-label">
+          <span>Fecha de nacimiento:</span>
+        </label>
+        <div class="padding-wrapper">
+          <input type="text" class="form-control" ng-model="edit.user.birthday" placeholder="aaaa-mm-dd">
+        </div>
+      </div>
+      <div class="form-group radios">
+        <label class="radio-inline u-label">
+          <input type="radio" ng-model="edit.user.gender" value="Hombre"> Hombre
+        </label>
+        <label class="radio-inline u-label">
+          <input type="radio" ng-model="edit.user.gender" value="Mujer"> Mujer
+        </label>
       </div>
 
       <button class="btn btn-primary" type="submit">Actualizar</button>

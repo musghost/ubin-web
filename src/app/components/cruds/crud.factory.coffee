@@ -2,6 +2,7 @@ angular.module 'ubinWeb'
   .factory 'Crud', ($resource, api) ->
     typePublication: $resource "#{api}/typePublication/", {}, {query: {method: 'GET', isArray: false}}
     typeProperty: $resource "#{api}/typeProperty/", {}, {query: {method: 'GET', isArray: false}}
+    typesAdvisors: $resource "#{api}/typesAdvisors/", {}, {query: {method: 'GET', isArray: false}}
     municipality: $resource "#{api}/town/", {}, {query: {method: 'GET', isArray: false}}
     state: $resource "#{api}/state/", {}, {query: {method: 'GET', isArray: false}}
     country: $resource "#{api}/country/", {}, {query: {method: 'GET', isArray: false}}

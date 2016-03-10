@@ -4,10 +4,15 @@ angular.module 'ubinWeb'
 
     Crud.user.query({userId: LoginUser.getId()}).$promise.then (user) ->
       vm.user = user
-      delete vm.user.type_advisor
+      vm.user.type_advisor = user.type_advisor.id
       delete vm.user.password
 
+    Crud.typesAdvisors.query().$promise.then (advisors) ->
+      vm.types = advisors.results
+
     vm.saveUser = ->
+      if !!vm.password
+        vm.user.password = vm.password
       vm.user.$update().then () ->
         alert('Usuario actualizado')
       return
