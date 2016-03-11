@@ -3,7 +3,4 @@ angular.module 'ubinWeb'
     'ngInject'
     vm = this
     LoginUser.logout()
-      .then () ->
-        $state.go 'login'
-      .catch (object) ->
-        console.log object
+    $state.go 'login'

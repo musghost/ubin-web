@@ -21,7 +21,7 @@
               <img src="assets/images/position/profile.png">
             </div>
             <span>Publicado por</span>
-            <span>{{single.post.user.name}} {{single.post.user.last_name}}</span>
+            <span>{{single.post.user.name}}</span>
           </div>
           <div class="col-sm-6">
             <div class="text-right">
@@ -54,7 +54,7 @@ Construcción: {{single.post.construction_area}} m2</p>
         <div class="comments">
           <div class="comment" ng-repeat="comment in single.comments">
             <div>
-              <span class="who">{{comment.user.name}} {{comment.user.last_name}} dice:</span>
+              <span class="who">{{comment.user.name}} dice:</span>
               <span>{{comment.comment}}</span>
               <span class="ago">{{comment.date | Ago}}</span>
             </div>

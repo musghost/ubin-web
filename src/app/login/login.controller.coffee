@@ -17,13 +17,15 @@ angular.module 'ubinWeb'
         if response.data.token?
           $cookies.put 'token', response.data.token
           $cookies.put 'id', response.data.user.id
-          $cookies.put 'name', "#{response.data.user.name} #{response.data.user.last_name}"
+          $cookies.put 'name', "#{response.data.user.name}"
           $cookies.put 'photo', response.data.user.photo
           $state.go 'home', {}, {reload: true}
         return
       .catch (res) ->
         if res.status == 400
-          vm.alerts.add 'danger', res.data.non_field_errors
+          vm.alerts.add 'danger', 'El nombre de usuario o contraseña son inválidos.'
+        else
+          vm.alerts.add 'danger', 'Hubo un error con el servidor. Inténtelo más tarde.'
 
       return
     return
