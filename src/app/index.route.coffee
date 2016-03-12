@@ -60,5 +60,10 @@ angular.module 'ubinWeb'
         templateUrl: 'app/logout/logout.html'
         controller: 'LogoutController'
         controllerAs: 'logout'
+      .state 'token',
+        url: '/token?token&id&name'
+        templateUrl: 'app/logout/logout.html'
+        controller: 'TokenController'
+        controllerAs: 'token'
 
     $urlRouterProvider.otherwise '/'

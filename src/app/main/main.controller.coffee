@@ -11,7 +11,7 @@ angular.module 'ubinWeb'
         console.log vm.location
 
     Crud.typePublication.query().$promise.then (result) ->
-      vm.type.publication = result.results
+      vm.publication = result.results
 
     Crud.stateFilter.query().$promise.then (result) ->
       vm.states = result.results
