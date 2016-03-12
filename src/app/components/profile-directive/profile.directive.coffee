@@ -3,6 +3,8 @@ angular.module 'ubinWeb'
     {
       restrict: 'E'
       link: (scope) ->
+        scope.$on 'login', (e, data) ->
+          scope.name = data.user.name
         scope.name = $cookies.get 'name'
       template: """
 <div class="profile">

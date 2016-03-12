@@ -1,5 +1,5 @@
 angular.module 'ubinWeb'
-  .controller 'LoginController', (Crud, $cookies, $http, $state, api, alerts) ->
+  .controller 'LoginController', (Crud, $cookies, $http, $state, api, alerts, $rootScope) ->
     vm = @
     vm.data =
       device_os: 'web'
@@ -20,6 +20,7 @@ angular.module 'ubinWeb'
           $cookies.put 'name', "#{response.data.user.name}"
           $cookies.put 'photo', response.data.user.photo
           $state.go 'home', {}, {reload: true}
+          $rootScope.$broadcast 'login', response.data
         return
       .catch (res) ->
         if res.status == 400
