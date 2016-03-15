@@ -34,6 +34,8 @@ angular.module 'ubinWeb'
     logout: ->
       $cookies.remove 'token'
       $cookies.remove 'id'
+      $cookies.remove 'name'
+      $cookies.remove 'photo'
     getToken: ->
       $cookies.get 'token'
     getId: ->

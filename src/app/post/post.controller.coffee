@@ -121,4 +121,11 @@ angular.module 'ubinWeb'
       fav.$save().then () ->
         selectedPost.isfavorite = !selectedPost.isfavorite
 
+    $scope.arrFiles = [0,0,0,0,0]
+    $scope.fileNameChanged = (element, i) ->
+      if element.files.length > 0
+        $scope.arrFiles[i] = 1
+      else
+        $scope.arrFiles[i] = 0
+      return
     return

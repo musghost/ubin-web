@@ -155,11 +155,21 @@
       </div>
       <div>
         <label class="u-label">Fotos (máx 5):</label>
-        <input type="file" file="post.post.photos[0]">
-        <input type="file" file="post.post.photos[1]">
-        <input type="file" file="post.post.photos[2]">
-        <input type="file" file="post.post.photos[3]">
-        <input type="file" file="post.post.photos[4]">
+        <label class="file" ng-class="{hasFile: arrFiles[0] == 1}">
+          <input type="file" file="post.post.photos[0]" onchange="angular.element(this).scope().fileNameChanged(this, 0)">
+        </label>
+        <label class="file" ng-class="{hasFile: arrFiles[1] == 1}">
+          <input type="file" file="post.post.photos[1]" onchange="angular.element(this).scope().fileNameChanged(this, 1)">
+        </label>
+        <label class="file" ng-class="{hasFile: arrFiles[2] == 1}">
+          <input type="file" file="post.post.photos[2]" onchange="angular.element(this).scope().fileNameChanged(this, 2)">
+        </label>
+        <label class="file" ng-class="{hasFile: arrFiles[3] == 1}">
+          <input type="file" file="post.post.photos[3]" onchange="angular.element(this).scope().fileNameChanged(this, 3)">
+        </label>
+        <label class="file" ng-class="{hasFile: arrFiles[4] == 1}">
+          <input type="file" file="post.post.photos[4]" onchange="angular.element(this).scope().fileNameChanged(this, 4)">
+        </label>
       </div>
 
       <button class="btn btn-primary" type="submit">Buscar</button>
