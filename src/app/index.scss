@@ -311,6 +311,30 @@ html {
       margin-left: 20px;
     }
   }
+
+  .file {
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    background: {
+      image: url('../assets/images/add-file.png');
+      repeat: no-repeat;
+      size: cover;
+    }
+
+    input {
+      opacity: 0;
+    }
+
+    &.hasFile {
+      border-radius: 50%;
+      border: 5px solid #fff;
+      background: {
+        color: #297bc0;
+        image: none;
+      }
+    }
+  }
 }
 
 .search-tool {
