@@ -1,9 +1,9 @@
 angular.module 'ubinWeb'
-  .controller 'LogoutController', ($state, LoginUser) ->
+  .controller 'LogoutController', ($state, LoginUser, web) ->
     'ngInject'
     vm = this
     LoginUser.logout()
-    $state.go 'login'
+    window.location.href = web
 
   .controller 'TokenController', ($stateParams, $rootScope, $state, $cookies) ->
     'ngInject'
