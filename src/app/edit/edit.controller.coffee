@@ -2,7 +2,7 @@ angular.module 'ubinWeb'
   .controller 'EditController', (Crud, LoginUser) ->
     vm = @
 
-    Crud.user.query({userId: LoginUser.getId()}).$promise.then (user) ->
+    Crud.user.query({userId: 10}).$promise.then (user) ->
       vm.user = user
       vm.user.type_advisor = user.type_advisor.id
       delete vm.user.password
