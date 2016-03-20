@@ -1,21 +1,27 @@
 angular.module 'ubinWeb'
-  .directive 'profile', ($cookies, Crud) ->
+  .directive 'profile', ($cookies, Crud, base) ->
     {
       restrict: 'E'
       link: (scope) ->
         Crud.user.get({userId: $cookies.get 'id'}).$promise.then (user) ->
           if user.photo?
-            scope.photo = user.photo
+            scope.photo = "#{base}media/#{user.photo}"
           else
             scope.photo = 'assets/images/position/profile.png'
+          scope.name = user.name
 
         scope.$on 'login', (e, data) ->
-          scope.name = data.user.name
-        scope.name = $cookies.get 'name'
+          Crud.user.get({userId: $cookies.get 'id'}).$promise.then (user) ->
+            if user.photo?
+              scope.photo = "#{base}media/#{user.photo}"
+            else
+              scope.photo = 'assets/images/position/profile.png'
+            scope.name = user.name
+          return
       template: """
 <div class="profile">
   <div class="image-profile">
-    <img ng-src="{{photo}}">
+    <div style="background-image:url('{{photo}}');"></div>
   </div>
   <h4>{{name}}</h4>
 </div>

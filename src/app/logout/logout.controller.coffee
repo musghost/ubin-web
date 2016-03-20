@@ -11,8 +11,9 @@ angular.module 'ubinWeb'
     $cookies.put 'token', $stateParams.token
     $cookies.put 'id', $stateParams.id
     $cookies.put 'name', $stateParams.name
-    $state.go 'home', {}, {reload: true}
     data =
       user:
         name: $stateParams.name
     $rootScope.$broadcast 'login', data
+    console.log $stateParams
+    $state.go 'home', {}, {reload: true}

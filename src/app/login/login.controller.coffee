@@ -17,9 +17,11 @@ angular.module 'ubinWeb'
         if response.data.token?
           $cookies.put 'token', response.data.token
           $cookies.put 'id', response.data.user.id
-          $cookies.put 'name', "#{response.data.user.name}"
+          $cookies.put 'name', response.data.user.name
+          console.log response.data.user.name
           $cookies.put 'photo', response.data.user.photo
           $state.go 'home', {}, {reload: true}
+          window.location.href = '/'
           $rootScope.$broadcast 'login', response.data
         return
       .catch (res) ->
