@@ -15,7 +15,7 @@ angular.module 'ubinWeb'
     'ngInject'
     vm = @
     vm.base = base
-    Crud.publicationsFilter.query({page_size: 100, ordering: '-date'}).$promise.then (result) ->
+    Crud.publicationsFilter.query({page_size: 100, ordering: '-date', state__id: LoginUser.getLocation().state}).$promise.then (result) ->
       vm.posts = result.results
     vm.fav = Fav.fav
     return
@@ -45,7 +45,7 @@ angular.module 'ubinWeb'
       vm.type.publication = result.results
     Crud.typeProperty.query().$promise.then (result) ->
       vm.type.property = result.results
-    Crud.townFilter.query({state__id: 9, page_size: 1000}).$promise.then (result) ->
+    Crud.townFilter.query({state__id: LoginUser.getLocation().state, page_size: 100}).$promise.then (result) ->
       vm.minucipalities = result.results.reverse()
     Crud.currencies.query().$promise.then (result) ->
       vm.currencies = result
