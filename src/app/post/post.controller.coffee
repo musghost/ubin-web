@@ -69,16 +69,7 @@ angular.module 'ubinWeb'
     vm.savePost = ->
       formatDate = () ->
         date = new Date()
-        yyyy = date.getFullYear().toString()
-        mm = (date.getMonth()+1).toString()
-        month = if mm[1] then mm else '0' + mm[0]
-        dd  = date.getDate().toString()
-        day = if dd[1] then dd else '0' + dd[0]
-        hour = date.getHours().toString()
-        hour = if hour[1] then hour else '0' + hour[0]
-        minutes = date.getMinutes().toString()
-        day = if minutes[1] then minutes else '0' + minutes[0]
-        "#{yyyy}-#{month}-#{day} #{hour}:#{minutes}"
+        date.toISOString()
       formData = new FormData()
       formData.append 'user', LoginUser.getId()
       formData.append 'date', formatDate()
@@ -93,10 +84,12 @@ angular.module 'ubinWeb'
         type: 'POST'
         data: formData
         async: false
+        headers:
+          'Authorization': "JWT #{LoginUser.getToken()}"
         success: () ->
           $state.go 'post'
         error: () ->
-          console.log 'kjdfjfjfjj'
+          window.alert 'Hubo un error al guardar la publicación. Inténtelo más tarde.'
         cache: false
         contentType: false
         processData: false
