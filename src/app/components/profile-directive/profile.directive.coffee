@@ -3,19 +3,16 @@ angular.module 'ubinWeb'
     {
       restrict: 'E'
       link: (scope) ->
-        Crud.user.get({userId: $cookies.get 'id'}).$promise.then (user) ->
-          if user.photo?
-            scope.photo = "#{base}media/#{user.photo}"
-          else
-            scope.photo = 'assets/images/position/profile.png'
-          scope.name = user.name
-
+        scope.photo = "#{base}media/#{$cookies.get('photo')}"
+        scope.name = $cookies.get 'name'
         scope.$on 'login', (e, data) ->
           Crud.user.get({userId: $cookies.get 'id'}).$promise.then (user) ->
-            if user.photo?
+            if user.photo != ''
               scope.photo = "#{base}media/#{user.photo}"
             else
               scope.photo = 'assets/images/position/profile.png'
+            $cookies.put 'name', user.name
+            $cookies.put 'photo', user.photo
             scope.name = user.name
           return
       template: """

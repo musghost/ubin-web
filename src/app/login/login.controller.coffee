@@ -18,7 +18,6 @@ angular.module 'ubinWeb'
           $cookies.put 'token', response.data.token
           $cookies.put 'id', response.data.user.id
           $cookies.put 'name', response.data.user.name
-          console.log response.data.user.name
           $cookies.put 'photo', response.data.user.photo
           $state.go 'home', {}, {reload: true}
           window.location.href = '/'

@@ -15,5 +15,4 @@ angular.module 'ubinWeb'
       user:
         name: $stateParams.name
     $rootScope.$broadcast 'login', data
-    console.log $stateParams
     $state.go 'home', {}, {reload: true}
