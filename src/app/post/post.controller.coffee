@@ -90,7 +90,7 @@ angular.module 'ubinWeb'
         if typeof value != 'object'
           formData.append key, value
       $.ajax({
-        url: "/api/v1/publication/"
+        url: "http://45.55.170.108/api/v1/publication/"
         type: 'POST'
         data: formData
         async: false
