@@ -3,7 +3,7 @@ angular.module 'ubinWeb'
     {
       restrict: 'E'
       link: (scope) ->
-        scope.photo = "#{base}media/#{$cookies.get('photo')}"
+        scope.photo = $cookies.get('photo')
         scope.name = $cookies.get 'name'
         scope.$on 'login', (e, data) ->
           Crud.user.get({userId: $cookies.get 'id'}).$promise.then (user) ->
@@ -12,7 +12,7 @@ angular.module 'ubinWeb'
             else
               scope.photo = 'assets/images/position/profile.png'
             $cookies.put 'name', user.name
-            $cookies.put 'photo', user.photo
+            $cookies.put 'photo', scope.photo
             scope.name = user.name
           return
       template: """

@@ -1,5 +1,5 @@
 angular.module 'ubinWeb'
-  .controller 'LoginController', (Crud, $cookies, $http, $state, api, alerts, $rootScope) ->
+  .controller 'LoginController', (Crud, $cookies, $http, $state, api, alerts, $rootScope, base) ->
     vm = @
     vm.data =
       device_os: 'web'
@@ -15,15 +15,20 @@ angular.module 'ubinWeb'
       })
       .then (response) ->
         if response.data.token?
+          if response.data.user.photo != ''
+            photo = "#{base}media/#{response.data.user.photo}"
+          else
+            photo = 'assets/images/position/profile.png'
           $cookies.put 'token', response.data.token
           $cookies.put 'id', response.data.user.id
           $cookies.put 'name', response.data.user.name
-          $cookies.put 'photo', response.data.user.photo
+          $cookies.put 'photo', photo
           $state.go 'home', {}, {reload: true}
           window.location.href = '/'
           $rootScope.$broadcast 'login', response.data
         return
       .catch (res) ->
+        console.log res
         if res.status == 400
           vm.alerts.add 'danger', 'El nombre de usuario o contraseña son inválidos.'
         else

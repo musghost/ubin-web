@@ -5,7 +5,6 @@ angular.module 'ubinWeb'
         file = event.target.files[0]
         scope.file = file ? file : undefined
         scope.$apply()
-        console.log 'apply'
     {
       link: fn_link
       scope:
@@ -37,6 +36,8 @@ angular.module 'ubinWeb'
 
     vm.base = base
 
+    vm.disabled = false
+
     vm.type = {}
 
     vm.posts = []
@@ -67,6 +68,7 @@ angular.module 'ubinWeb'
       return
 
     vm.savePost = ->
+      vm.disabled = true
       formatDate = () ->
         date = new Date()
         date.toISOString()
@@ -75,20 +77,31 @@ angular.module 'ubinWeb'
       formData.append 'date', formatDate()
       formData.append 'status', 'true'
       angular.forEach vm.post, (value, key) ->
+        if key == "photos"
+          if value?
+            size = 0
+            for key, val of value
+              formData.append 'photos[]', val
+              size += val.size
+            console.log size
+            if size > 10000000
+              window.alert 'El tamaño de las fotos no debe exceder los 10 megabytes'
+              return
         if typeof value != 'object'
           formData.append key, value
-        else
-          formData.append 'photos[]', value[0]
       $.ajax({
-        url: "http://45.55.170.108/api/v1/publication/"
+        url: "/api/v1/publication/"
         type: 'POST'
         data: formData
         async: false
         headers:
           'Authorization': "JWT #{LoginUser.getToken()}"
         success: () ->
-          $state.go 'post'
-        error: () ->
+          $state.go 'post', {}, {reload: true}
+          vm.disabled = false
+        error: (e) ->
+          console.log e
+          vm.disabled = false
           window.alert 'Hubo un error al guardar la publicación. Inténtelo más tarde.'
         cache: false
         contentType: false
@@ -96,8 +109,10 @@ angular.module 'ubinWeb'
       })
       .success () ->
         console.log 'ok'
+        vm.disabled = false
       .error () ->
         console.log 'bad'
+        vm.disabled = false
       return
 
     vm.fav = (event, selectedPost) ->
