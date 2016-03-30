@@ -53,7 +53,7 @@ angular.module 'ubinWeb'
 
     Crud.publicationsFilter.query({user__id: LoginUser.getId()}).$promise.then (result) ->
       vm.posts = result.results
-    
+
     vm.post =
       file: []
 
@@ -76,6 +76,9 @@ angular.module 'ubinWeb'
       formData.append 'user', LoginUser.getId()
       formData.append 'date', formatDate()
       formData.append 'status', 'true'
+      if LoginUser.getLocation()?
+        formData.append 'country', LoginUser.getLocation().country
+        formData.append 'state', LoginUser.getLocation().state
       angular.forEach vm.post, (value, key) ->
         if key == "photos"
           if value?
