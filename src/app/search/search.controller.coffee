@@ -25,8 +25,11 @@ angular.module 'ubinWeb'
 
     vm.performSearch = () ->
       Crud.publicationsFilter.query(vm.search).$promise.then (result) ->
-        vm.posts = result.results
-        $location.hash 'results'
-        $anchorScroll()
+        if result.results.length > 0
+          vm.posts = result.results
+          $location.hash 'results'
+          $anchorScroll()
+        else
+          window.alert 'No se obtuvbieron resultados'
       return
     return
