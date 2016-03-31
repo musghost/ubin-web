@@ -30,7 +30,7 @@ angular.module 'ubinWeb'
           current.publication
     vm.fav = Fav.fav
     return
-  .controller 'PostController', ($scope, $state, Crud, $http, LoginUser, base) ->
+  .controller 'PostController', ($scope, $state, Crud, $http, LoginUser, base, api) ->
     'ngInject'
     vm = @
 
@@ -93,7 +93,7 @@ angular.module 'ubinWeb'
         if typeof value != 'object'
           formData.append key, value
       $.ajax({
-        url: "http://45.55.170.108/api/v1/publication/"
+        url: "#{api}/publication/"
         type: 'POST'
         data: formData
         async: false

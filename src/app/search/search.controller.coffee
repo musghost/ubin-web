@@ -1,8 +1,10 @@
 angular.module 'ubinWeb'
-  .controller 'SearchController', (Crud, LoginUser) ->
+  .controller 'SearchController', (Crud, LoginUser, base, $location, $anchorScroll) ->
     vm = @
-    vm.search = {}
+    vm.search =
+      page_size: 100
     vm.type = {}
+    vm.base = base
 
     Crud.typePublication.query().$promise.then (result) ->
       vm.type.publication = result.results
@@ -23,6 +25,8 @@ angular.module 'ubinWeb'
 
     vm.performSearch = () ->
       Crud.publicationsFilter.query(vm.search).$promise.then (result) ->
-        console.log result
+        vm.posts = result.results
+        $location.hash 'results'
+        $anchorScroll()
       return
     return
