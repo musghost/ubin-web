@@ -42,9 +42,9 @@ angular.module 'ubinWeb'
 
     vm.posts = []
 
-    Crud.typePublication.query().$promise.then (result) ->
+    Crud.typePublication.query({page_size: 100}).$promise.then (result) ->
       vm.type.publication = result.results
-    Crud.typeProperty.query().$promise.then (result) ->
+    Crud.typeProperty.query({page_size: 100}).$promise.then (result) ->
       vm.type.property = result.results
     Crud.townFilter.query({state__id: LoginUser.getLocation().state, page_size: 100}).$promise.then (result) ->
       vm.minucipalities = result.results.reverse()
