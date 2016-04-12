@@ -37,6 +37,7 @@ angular.module 'ubinWeb'
     vm.base = base
 
     vm.disabled = false
+    vm.showDelete = true
 
     vm.type = {}
 
@@ -131,6 +132,10 @@ angular.module 'ubinWeb'
 
       fav.$save().then () ->
         selectedPost.isfavorite = !selectedPost.isfavorite
+
+    vm.deletePub = (event, post) ->
+      event.preventDefault()
+      console.log post
 
     $scope.arrFiles = [0,0,0,0,0]
     $scope.fileNameChanged = (element, i) ->
