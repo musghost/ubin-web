@@ -135,7 +135,8 @@ angular.module 'ubinWeb'
 
     vm.deletePub = (event, post) ->
       event.preventDefault()
-      console.log post
+      $http.delete("#{api}/publication/#{post.id}/").then ->
+        $state.go $state.current, {}, {reload: true}
 
     $scope.arrFiles = [0,0,0,0,0]
     $scope.fileNameChanged = (element, i) ->
