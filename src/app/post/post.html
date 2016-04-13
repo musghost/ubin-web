@@ -27,6 +27,10 @@
           <h4>{{p.neighborhood.name}}</h4>
           <span class="place">{{p.town.name}}, {{p.state.name}}</span>
           <span class="price">${{p.price_first}} {{p.currency.name}}</span>
+          <div>
+            <a href="#" class="price" ng-show="post.showDelete" ng-click="post.deletePub($event, p)">Eliminar</a>
+            <a href="#" class="price" ng-show="post.showDelete">Editar</a>
+          </div>
           <div class="text-right">
             <span class="ago">{{p.date | Ago}}.</span>
           </div>

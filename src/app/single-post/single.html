@@ -3,10 +3,12 @@
     <div class="col-50">
       <div class="singles">
         <div class="single-img">
-          <img ng-src="{{single.base}}media/{{single.post.photos[0].hash_name}}">
+          <img ng-src="{{single.base}}media/{{single.bigPhoto}}">
         </div>
         <div class="single-minis">
-          <div class="mini" ng-repeat="photo in single.post.photos" ng-hide="$index == 0"><img ng-src="{{single.base}}media/{{photo.hash_name}}"></div>
+          <div class="mini" ng-repeat="photo in single.post.photos">
+            <img ng-src="{{single.base}}media/{{photo.hash_name}}" ng-click="single.changePhoto(photo.hash_name)">
+          </div>
         </div>
       </div>
     </div>

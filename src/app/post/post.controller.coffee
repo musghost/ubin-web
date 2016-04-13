@@ -37,14 +37,15 @@ angular.module 'ubinWeb'
     vm.base = base
 
     vm.disabled = false
+    vm.showDelete = true
 
     vm.type = {}
 
     vm.posts = []
 
-    Crud.typePublication.query().$promise.then (result) ->
+    Crud.typePublication.query({page_size: 100}).$promise.then (result) ->
       vm.type.publication = result.results
-    Crud.typeProperty.query().$promise.then (result) ->
+    Crud.typeProperty.query({page_size: 100}).$promise.then (result) ->
       vm.type.property = result.results
     Crud.townFilter.query({state__id: LoginUser.getLocation().state, page_size: 100}).$promise.then (result) ->
       vm.minucipalities = result.results.reverse()
@@ -131,6 +132,10 @@ angular.module 'ubinWeb'
 
       fav.$save().then () ->
         selectedPost.isfavorite = !selectedPost.isfavorite
+
+    vm.deletePub = (event, post) ->
+      event.preventDefault()
+      console.log post
 
     $scope.arrFiles = [0,0,0,0,0]
     $scope.fileNameChanged = (element, i) ->
