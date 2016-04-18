@@ -47,8 +47,8 @@ angular.module 'ubinWeb'
       vm.type.publication = result.results
     Crud.typeProperty.query({page_size: 100}).$promise.then (result) ->
       vm.type.property = result.results
-    Crud.townFilter.query({state__id: LoginUser.getLocation().state, page_size: 100}).$promise.then (result) ->
-      vm.minucipalities = result.results.reverse()
+    Crud.townFilter.query({state__id: LoginUser.getLocation().state, page_size: 100, ordering: 'name'}).$promise.then (result) ->
+      vm.minucipalities = result.results
     Crud.currencies.query().$promise.then (result) ->
       vm.currencies = result
 
@@ -59,13 +59,8 @@ angular.module 'ubinWeb'
       file: []
 
     vm.setNeighborhood = ->
-      Crud.neighborhoodFilter.query({town__id: vm.post.town__id, page_size: 1000}).$promise.then (result) ->
-        vm.neighborhood = result.results.sort (a, b) ->
-          if a.name < b.name
-            return -1
-          if a.firstname > b.firstname
-            return 1
-          0
+      Crud.neighborhoodFilter.query({town__id: vm.post.town__id, page_size: 1000, ordering: 'name'}).$promise.then (result) ->
+        vm.neighborhood = result.results
       return
 
     vm.savePost = ->
@@ -145,4 +140,6 @@ angular.module 'ubinWeb'
       else
         $scope.arrFiles[i] = 0
       return
+    return
+  .controller 'EditPostController', () ->
     return

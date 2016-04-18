@@ -20,6 +20,10 @@ angular.module 'ubinWeb'
       .state 'post.create',
         url: '/create'
         templateUrl: 'app/post/create.html'
+      .state 'post.edit',
+        url: '/edit/:id'
+        controller: 'EditPostController'
+        templateUrl: 'app/post/create.html'
       .state 'posts',
         url: '/posts'
         templateUrl: 'app/post/post.html'
