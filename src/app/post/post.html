@@ -29,7 +29,7 @@
           <span class="price">${{p.price_first}} {{p.currency.name}}</span>
           <div>
             <a href="#" class="price" ng-show="post.showDelete" ng-click="post.deletePub($event, p)">Eliminar</a>
-            <a href="#" class="price" ng-show="post.showDelete">Editar</a>
+            <a ui-sref="post.edit({id: p.id})" class="price" ng-show="post.showDelete">Editar</a>
           </div>
           <div class="text-right">
             <span class="ago">{{p.date | Ago}}.</span>

@@ -42,7 +42,7 @@
             </label>
             <div class="padding-wrapper">
               <div class="select">
-                <select ng-options="type.id as type.name for type in post.minucipalities track by type.id" ng-model="post.post.town__id" ng-change="post.setNeighborhood()">
+                <select ng-options="type.id as type.name for type in post.minucipalities track by type.id" ng-model="post.post.town" ng-change="post.setNeighborhood()">
                   <option value=""></option>
                 </select>
               </div>
@@ -87,7 +87,7 @@
               <span>Precio:</span>
             </label>
             <div class="padding-wrapper">
-              <input type="number" class="form-control" ng-model="post.post.price_first">
+              <input type="text" class="form-control" ng-model="post.post.price_first">
             </div>
           </div>
         </div>
@@ -107,29 +107,8 @@
             </label>
             <div class="padding-wrapper">
               <div class="select">
-                <select ng-model="post.post.bathrooms">
+                <select ng-options="number for number in post.bath" ng-model="post.post.bathrooms">
                   <option value=""></option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
-                  <option value="12">13</option>
-                  <option value="13">13</option>
-                  <option value="14">14</option>
-                  <option value="15">15</option>
-                  <option value="16">16</option>
-                  <option value="17">17</option>
-                  <option value="18">18</option>
-                  <option value="19">19</option>
-                  <option value="20">20</option>
                 </select>
               </div>
             </div>

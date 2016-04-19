@@ -24,6 +24,7 @@ angular.module 'ubinWeb'
         url: '/edit/:id'
         controller: 'EditPostController'
         templateUrl: 'app/post/create.html'
+        controllerAs: 'post'
       .state 'posts',
         url: '/posts'
         templateUrl: 'app/post/post.html'
