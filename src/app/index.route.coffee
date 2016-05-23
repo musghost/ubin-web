@@ -8,7 +8,7 @@ angular.module 'ubinWeb'
         controller: 'MainController'
         controllerAs: 'main'
       .state 'search',
-        url: '/search'
+        url: '/search?q'
         templateUrl: 'app/search/search.html'
         controller: 'SearchController'
         controllerAs: 'search'

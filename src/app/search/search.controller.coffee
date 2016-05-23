@@ -1,5 +1,5 @@
 angular.module 'ubinWeb'
-  .controller 'SearchController', (Crud, LoginUser, base, $location, $anchorScroll) ->
+  .controller 'SearchController', (Crud, LoginUser, base, $location, $anchorScroll, $stateParams) ->
     vm = @
     vm.search =
       page_size: 100
@@ -32,4 +32,8 @@ angular.module 'ubinWeb'
         else
           window.alert 'No se obtuvbieron resultados'
       return
+
+    if $stateParams.q?
+      vm.search.search = $stateParams.q
+      vm.performSearch()
     return
