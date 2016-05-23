@@ -30,7 +30,7 @@ angular.module 'ubinWeb'
           current.publication
     vm.fav = Fav.fav
     return
-  .controller 'PostController', ($scope, $state, Crud, $http, LoginUser, base, api) ->
+  .controller 'PostController', ($scope, $state, Crud, $http, LoginUser, base, api, toastr) ->
     'ngInject'
     vm = @
 
@@ -96,12 +96,29 @@ angular.module 'ubinWeb'
         headers:
           'Authorization': "JWT #{LoginUser.getToken()}"
         success: () ->
+          toastr.success 'Se ha guardado la publicación con éxito'
           $state.go 'post', {}, {reload: true}
           vm.disabled = false
         error: (e) ->
-          console.log e
+          if e.responseJSON?
+            if e.responseJSON.area?
+              toastr.error 'El campo Metros (terreno) es requerido'
+            if e.responseJSON.construction_area?
+              toastr.error 'El campo Metros (construcción) es requerido'
+            if e.responseJSON.country?
+              toastr.error 'El campo País es requerido'
+            if e.responseJSON.currency?
+              toastr.error 'Debe elegir un tipo de moneda'
+            if e.responseJSON.description?
+              toastr.error 'El campo Descripción es requerido'
+            if e.responseJSON.price_first?
+              toastr.error 'El campo Precio es requerido'
+            if e.responseJSON.state?
+              toastr.error 'El campo Estado es requerido'
+            if e.responseJSON.title?
+              toastr.error 'El campo Título es requerido'
           vm.disabled = false
-          window.alert 'Hubo un error al guardar la publicación. Inténtelo más tarde.'
+          toastr.error 'Hubo un error al guardar la publicación.'
         cache: false
         contentType: false
         processData: false
