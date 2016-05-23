@@ -13,6 +13,7 @@ angular.module 'ubinWeb'
               scope.photo = 'assets/images/position/profile.png'
             $cookies.put 'name', user.name
             $cookies.put 'photo', scope.photo
+            $cookies.put 'special', user.allow_past_due_portfolio
             scope.name = user.name
           return
       template: """
