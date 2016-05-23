@@ -30,7 +30,7 @@ angular.module 'ubinWeb'
           current.publication
     vm.fav = Fav.fav
     return
-  .controller 'PostController', ($scope, $state, Crud, $http, LoginUser, base, api, toastr) ->
+  .controller 'PostController', ($scope, $state, Crud, $http, LoginUser, base, api, toastr, $cookies) ->
     'ngInject'
     vm = @
 
@@ -40,8 +40,11 @@ angular.module 'ubinWeb'
     vm.showDelete = true
 
     vm.type = {}
-
+    vm.bath = (num for num in [1..20] by 0.5)
     vm.posts = []
+
+    vm.special = false
+    vm.special = true if $cookies.get('special') == 'true'
 
     Crud.typePublication.query({page_size: 100}).$promise.then (result) ->
       vm.type.publication = result.results
@@ -51,6 +54,10 @@ angular.module 'ubinWeb'
       vm.minucipalities = result.results
     Crud.currencies.query().$promise.then (result) ->
       vm.currencies = result
+    Crud.pastDue.query({page_size: 100}).$promise.then (result) ->
+      vm.type.past = result.results
+    Crud.legalStatus.query({page_size: 100}).$promise.then (result) ->
+      vm.type.legal = result.results
 
     Crud.publicationsFilter.query({user__id: LoginUser.getId()}).$promise.then (result) ->
       vm.posts = result.results
@@ -72,6 +79,8 @@ angular.module 'ubinWeb'
       formData.append 'user', LoginUser.getId()
       formData.append 'date', formatDate()
       formData.append 'status', 'true'
+      if vm.special
+        formData.append 'mortgage', 1
       if LoginUser.getLocation()?
         formData.append 'country', LoginUser.getLocation().country
         formData.append 'state', LoginUser.getLocation().state
@@ -163,7 +172,7 @@ angular.module 'ubinWeb'
     vm = @
     vm.type = {}
 
-    vm.bath = (num for num in [1..20])
+    vm.bath = (num for num in [1..20] by 0.5)
 
     Crud.typePublication.query({page_size: 100}).$promise.then (result) ->
       vm.type.publication = result.results

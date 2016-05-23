@@ -15,6 +15,7 @@ angular.module 'ubinWeb'
         if response.data.token?
           $cookies.put 'token', response.data.token
           $cookies.put 'id', response.data.user.id
+          $cookies.put 'special', response.data.user.allow_past_due_portfolio
           res.status = true
           deferred.resolve res
         else

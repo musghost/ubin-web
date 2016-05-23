@@ -21,3 +21,5 @@ angular.module 'ubinWeb'
     notificationsFilter: $resource "#{api}/notificationsFilter/", {}, {query: {method: 'GET', isArray: false}}
     myUser: $resource "#{api}/users/:userId/", {userId: '@id'}, {query: {method: 'GET', isArray: false}}
     user: $resource "#{api}/user/:userId/", {userId: '@id'}, {query: {method: 'GET', isArray: false}, update: {method: 'PATCH'}}
+    pastDue: $resource "#{api}/typePublicationsPastDue/", {}, {query: {method: 'GET', isArray: false}}
+    legalStatus: $resource "#{api}/legalStatus/", {}, {query: {method: 'GET', isArray: false}}
