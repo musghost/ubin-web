@@ -6,14 +6,12 @@ angular.module 'ubinWeb'
 
     Crud.country.query({page_size: 100}).$promise.then (result) ->
       vm.countries = result.results
-      if LoginUser.getLocation()?
-        vm.location = LoginUser.getLocation()
 
     Crud.typePublication.query({page_size: 100}).$promise.then (result) ->
       vm.publication = result.results
 
     vm.setLocation = ->
-      console.log vm.location.state
+      LoginUser.clearLocation()
       LoginUser.setLocation vm.location
       $state.go 'posts'
 

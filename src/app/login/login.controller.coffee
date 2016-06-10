@@ -1,5 +1,5 @@
 angular.module 'ubinWeb'
-  .controller 'LoginController', (Crud, $cookies, $http, $state, api, alerts, $rootScope, base) ->
+  .controller 'LoginController', (Crud, $cookies, $http, $state, api, alerts, $rootScope, base, LoginUser) ->
     vm = @
     vm.data =
       device_os: 'web'
@@ -19,6 +19,7 @@ angular.module 'ubinWeb'
             photo = "#{base}media/#{response.data.user.photo}"
           else
             photo = 'assets/images/position/profile.png'
+          LoginUser.clearLocation()
           $cookies.put 'token', response.data.token
           $cookies.put 'id', response.data.user.id
           $cookies.put 'name', response.data.user.name

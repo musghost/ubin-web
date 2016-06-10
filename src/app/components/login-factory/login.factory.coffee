@@ -13,6 +13,7 @@ angular.module 'ubinWeb'
         data: data
       }).then ((response) ->
         if response.data.token?
+          LoginUser.clearLocation()
           $cookies.put 'token', response.data.token
           $cookies.put 'id', response.data.user.id
           $cookies.put 'special', response.data.user.allow_past_due_portfolio
@@ -51,3 +52,6 @@ angular.module 'ubinWeb'
       location =
         country: $cookies.get 'country'
         state: $cookies.get 'state'
+    clearLocation: ->
+      $cookies.remove 'country'
+      $cookies.remove 'state'

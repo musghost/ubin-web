@@ -46,6 +46,9 @@ angular.module 'ubinWeb'
     vm.special = false
     vm.special = true if $cookies.get('special') == 'true'
 
+    vm.location = LoginUser.getLocation()
+    vm.state = LoginUser.getLocation().state?
+
     Crud.typePublication.query({page_size: 100}).$promise.then (result) ->
       vm.type.publication = result.results
     Crud.typeProperty.query({page_size: 100}).$promise.then (result) ->
