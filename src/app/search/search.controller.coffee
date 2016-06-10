@@ -2,6 +2,8 @@ angular.module 'ubinWeb'
   .controller 'SearchController', (Crud, LoginUser, base, $location, $anchorScroll, $stateParams) ->
     vm = @
     vm.search =
+      country: LoginUser.getLocation().country
+      state: LoginUser.getLocation().state
       page_size: 100
     vm.type = {}
     vm.base = base
