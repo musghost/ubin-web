@@ -87,14 +87,10 @@ angular.module 'ubinWeb'
       angular.forEach vm.post, (value, key) ->
         if key == "photos"
           if value?
-            size = 0
+            num = 0
             for key, val of value
-              formData.append 'photos[]', val
-              size += val.size
-            console.log size
-            if size > 10000000
-              window.alert 'El tamaño de las fotos no debe exceder los 10 megabytes'
-              return
+              formData.append "photo_#{num}", val
+              num++
         if typeof value != 'object'
           formData.append key, value
       $.ajax({
@@ -226,14 +222,10 @@ angular.module 'ubinWeb'
       angular.forEach post, (value, key) ->
         if key == "photos"
           if value?
-            size = 0
+            num = 0
             for key, val of value
-              formData.append 'photos[]', val
-              size += val.size
-            console.log size
-            if size > 10000000
-              window.alert 'El tamaño de las fotos no debe exceder los 10 megabytes'
-              return
+              formData.append "photo_#{num}", val
+              num++
         if typeof value != 'object'
           formData.append key, value
       $.ajax({
