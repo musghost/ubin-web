@@ -11,6 +11,7 @@ angular.module 'ubinWeb'
     townFilter: $resource "#{api}/townFilter/", {}, {query: {method: 'GET', isArray: false}}
     neighborhoodFilter: $resource "#{api}/neighborhoodFilter/", {}, {query: {method: 'GET', isArray: false}}
     currencies: $resource "#{api}/currencies/"
+    publication: $resource "#{api}/publication/:id", {}, {query: {method: 'GET', isArray: false}}
     stateFilter: $resource "#{api}/stateFilter/", {}, {query: {method: 'GET', isArray: false}}
     favorite: $resource "#{api}/favorite/", {}, {query: {method: 'GET', isArray: false}}
     unFavorite: $resource "#{api}/unfavorite/", {}, {query: {method: 'GET', isArray: false}}
@@ -20,3 +21,5 @@ angular.module 'ubinWeb'
     notificationsFilter: $resource "#{api}/notificationsFilter/", {}, {query: {method: 'GET', isArray: false}}
     myUser: $resource "#{api}/users/:userId/", {userId: '@id'}, {query: {method: 'GET', isArray: false}}
     user: $resource "#{api}/user/:userId/", {userId: '@id'}, {query: {method: 'GET', isArray: false}, update: {method: 'PATCH'}}
+    pastDue: $resource "#{api}/typePublicationsPastDue/", {}, {query: {method: 'GET', isArray: false}}
+    legalStatus: $resource "#{api}/legalStatus/", {}, {query: {method: 'GET', isArray: false}}

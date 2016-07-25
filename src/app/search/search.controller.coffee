@@ -1,8 +1,12 @@
 angular.module 'ubinWeb'
-  .controller 'SearchController', (Crud, LoginUser) ->
+  .controller 'SearchController', (Crud, LoginUser, base, $location, $anchorScroll, $stateParams) ->
     vm = @
-    vm.search = {}
+    vm.search =
+      country: LoginUser.getLocation().country
+      state: LoginUser.getLocation().state
+      page_size: 100
     vm.type = {}
+    vm.base = base
 
     Crud.typePublication.query().$promise.then (result) ->
       vm.type.publication = result.results
@@ -23,6 +27,15 @@ angular.module 'ubinWeb'
 
     vm.performSearch = () ->
       Crud.publicationsFilter.query(vm.search).$promise.then (result) ->
-        console.log result
+        if result.results.length > 0
+          vm.posts = result.results
+          $location.hash 'results'
+          $anchorScroll()
+        else
+          window.alert 'No se obtuvbieron resultados'
       return
+
+    if $stateParams.q?
+      vm.search.search = $stateParams.q
+      vm.performSearch()
     return

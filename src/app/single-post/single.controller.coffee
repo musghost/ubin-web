@@ -11,6 +11,8 @@ angular.module 'ubinWeb'
     Crud.publicationsFilter.query({id: $stateParams.id}).$promise.then (response) ->
       vm.post = response.results[0]
       vm.comment.publication = response.results[0].id
+      vm.bigPhoto = vm.post.photos[0].hash_name
+      vm.profilePhoto = "#{base}media/#{vm.post.user.photo}"
 
     Crud.commentsFilter.query({publication__id: $stateParams.id}).$promise.then (response) ->
       vm.comments = response.results
@@ -21,4 +23,6 @@ angular.module 'ubinWeb'
         Crud.commentsFilter.query({publication__id: $stateParams.id}).$promise.then (response) ->
           vm.comments = response.results
           vm.comment.comment = ''
+    vm.changePhoto = (hash) ->
+      vm.bigPhoto = hash
     return

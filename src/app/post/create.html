@@ -2,7 +2,7 @@
   <div class="col-sm-8">
     <h2 class="main">Añadir publicación</h2>
     <form ng-submit="post.savePost()" class="create-form">
-      <div class="form-group">
+      <div class="form-group" ng-show="post.special">
         <label class="u-label">
           <span>Número de lona o código:</span>
         </label>
@@ -22,6 +22,18 @@
           </div>
         </div>
       </div>
+      <div class="form-group" ng-show="post.special">
+        <label class="u-label">
+          <span>Tipo de publicación de cartera vencida:</span>
+        </label>
+        <div class="padding-wrapper">
+          <div class="select">
+            <select ng-options="type.id as type.name for type in post.type.past track by type.id" ng-model="post.post.type_publications_past_due">
+              <option value=""></option>
+            </select>
+          </div>
+        </div>
+      </div>
       <div class="form-group">
         <label class="u-label">
           <span>Tipo de inmueble:</span>
@@ -34,6 +46,7 @@
           </div>
         </div>
       </div>
+      <p ng-hide="post.state">Debes seleccionas un país y un estado antes de seleccionar un municipio y una colonia</p>
       <div class="row">
         <div class="col-sm-6">
           <div class="form-group">
@@ -42,7 +55,7 @@
             </label>
             <div class="padding-wrapper">
               <div class="select">
-                <select ng-options="type.id as type.name for type in post.minucipalities track by type.id" ng-model="post.post.town__id" ng-change="post.setNeighborhood()">
+                <select ng-options="type.id as type.name for type in post.minucipalities track by type.id" ng-model="post.post.town" ng-change="post.setNeighborhood()" ng-disabled="!post.state">
                   <option value=""></option>
                 </select>
               </div>
@@ -56,7 +69,7 @@
             </label>
             <div class="padding-wrapper">
               <div class="select">
-                <select ng-options="type.id as type.name for type in post.neighborhood track by type.id" ng-model="post.post.neighborhood">
+                <select ng-options="type.id as type.name for type in post.neighborhood track by type.id" ng-model="post.post.neighborhood"  ng-disabled="!post.state">
                   <option value=""></option>
                 </select>
               </div>
@@ -87,7 +100,7 @@
               <span>Precio:</span>
             </label>
             <div class="padding-wrapper">
-              <input type="number" class="form-control" ng-model="post.post.price_first">
+              <input type="text" class="form-control" ng-model="post.post.price_first">
             </div>
           </div>
         </div>
@@ -99,6 +112,32 @@
           </div>
         </div>
       </div>
+      <div class="row" ng-show="post.special">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="u-label">
+              <span>Avalúo:</span>
+            </label>
+            <div class="padding-wrapper">
+              <input type="text" class="form-control" ng-model="post.post.price_appraisal">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="u-label">
+              <span>Estatus legal:</span>
+            </label>
+            <div class="padding-wrapper">
+              <div class="select">
+                <select ng-options="type.id as type.name for type in post.type.legal track by type.id" ng-model="post.post.legal_status">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-sm-6">
           <div class="form-group">
@@ -107,29 +146,8 @@
             </label>
             <div class="padding-wrapper">
               <div class="select">
-                <select ng-model="post.post.bathrooms">
+                <select ng-options="number for number in post.bath" ng-model="post.post.bathrooms">
                   <option value=""></option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
-                  <option value="12">13</option>
-                  <option value="13">13</option>
-                  <option value="14">14</option>
-                  <option value="15">15</option>
-                  <option value="16">16</option>
-                  <option value="17">17</option>
-                  <option value="18">18</option>
-                  <option value="19">19</option>
-                  <option value="20">20</option>
                 </select>
               </div>
             </div>
@@ -187,7 +205,7 @@
         </label>
       </div>
 
-      <button class="btn btn-primary" type="submit">Agregar</button>
+      <button class="btn btn-primary" type="submit" ng-disable="post.disabled">Agregar</button>
     </form>
   </div>
 </div>
