@@ -23,7 +23,8 @@ angular.module 'ubinWeb'
           $cookies.put 'token', response.data.token
           $cookies.put 'id', response.data.user.id
           $cookies.put 'name', response.data.user.name
-          $cookies.put 'photo', photo
+          $cookies.put 'photo', response.data.user.photo
+          $cookies.put 'gender', response.data.user.gender
           $cookies.put 'special', response.data.user.allow_past_due_portfolio
           $state.go 'home', {}, {reload: true}
           window.location.href = '/'

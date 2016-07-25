@@ -3,15 +3,37 @@ angular.module 'ubinWeb'
     {
       restrict: 'E'
       link: (scope) ->
-        scope.photo = $cookies.get('photo')
+        photoCookie=$cookies.get('photo')
+        genderCookie=$cookies.get('gender')
+        if photoCookie == ''
+          if genderCookie != ''
+            if genderCookie=="Mujer"
+              scope.photo = "#{base}media/mujer.png"
+            else
+              scope.photo = "#{base}media/hombre.png"
+          else
+            scope.photo = "#{base}media/hombre.png"
+        else
+          scope.photo = "#{base}media/#{photoCookie}"
+
         scope.name = $cookies.get 'name'
         scope.$on 'login', (e, data) ->
           Crud.user.get({userId: $cookies.get 'id'}).$promise.then (user) ->
-            if user.photo != ''
-              scope.photo = "#{base}media/#{user.photo}"
+            console.log "foto" + user.photo
+            console.log "gender" + user.gender
+            if user.photo == ''
+              if user.gender != ''
+                if user.gender=="Mujer"
+                  scope.photo = "#{base}media/mujer.png"
+                else
+                  scope.photo = "#{base}media/hombre.png"
+              else
+                scope.photo = "#{base}media/hombre.png"
             else
-              scope.photo = 'assets/images/position/profile.png'
+              scope.photo = "#{base}media/#{user.photo}"
             $cookies.put 'name', user.name
+
+            $cookies.put 'gender', user.gender
             $cookies.put 'photo', scope.photo
             $cookies.put 'special', user.allow_past_due_portfolio
             scope.name = user.name
