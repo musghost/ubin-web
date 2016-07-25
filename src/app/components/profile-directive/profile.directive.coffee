@@ -19,8 +19,6 @@ angular.module 'ubinWeb'
         scope.name = $cookies.get 'name'
         scope.$on 'login', (e, data) ->
           Crud.user.get({userId: $cookies.get 'id'}).$promise.then (user) ->
-            console.log "foto" + user.photo
-            console.log "gender" + user.gender
             if user.photo == ''
               if user.gender != ''
                 if user.gender=="Mujer"
