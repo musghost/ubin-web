@@ -72,7 +72,24 @@ angular.module 'ubinWeb'
       Crud.neighborhoodFilter.query({town__id: vm.post.town, page_size: 1000, ordering: 'name'}).$promise.then (result) ->
         vm.neighborhood = result.results
       return
-
+    vm.validateForm = (formData) ->
+      switch formData.type_publications
+        when 7  then return casa() # Tipo de publicación Casa
+        when 8  then return casaCondominio() # Tipo de publicación Casa condominio
+        when 9  then return departamento() # Tipo de publicación Departamento
+        when 10 then return loft() # Tipo de publicación Loft
+        when 11 then return pentHouse() # Tipo de publicación 
+        when 12 then return edificio() # Tipo de publicación Edificio
+        when 13 then return hotel() # Tipo de publicación Hotel
+        when 14 then return localComercial() # Tipo de publicación Local comercial
+        when 15 then return oficina() # Tipo de publicación Oficina
+        when 16 then return terreno() # Tipo de publicación Terreno
+        when 17 then return bodega() # Tipo de publicación Bodega
+        when 18 then return rancho() # Tipo de publicación Rancho
+        when 19 then return quinta() # Tipo de publicación Quinta
+        when 20 then return hacienda() # Tipo de publicación Hacienda
+        when 21 then return camaNautica() # Tipo de publicación Cama Nautica
+        else return true
     vm.savePost = ->
       vm.disabled = true
       formatDate = () ->
@@ -96,47 +113,50 @@ angular.module 'ubinWeb'
               num++
         if typeof value != 'object'
           formData.append key, value
-      $.ajax({
-        url: "#{api}/publication/"
-        type: 'POST'
-        data: formData
-        async: false
-        headers:
-          'Authorization': "JWT #{LoginUser.getToken()}"
-        success: () ->
-          toastr.success 'Se ha guardado la publicación con éxito'
-          $state.go 'post', {}, {reload: true}
+      if validateForm(formData)
+        $.ajax({
+          url: "#{api}/publication/"
+          type: 'POST'
+          data: formData
+          async: false
+          headers:
+            'Authorization': "JWT #{LoginUser.getToken()}"
+          success: () ->
+            toastr.success 'Se ha guardado la publicación con éxito'
+            $state.go 'post', {}, {reload: true}
+            vm.disabled = false
+          error: (e) ->
+            if e.responseJSON?
+              if e.responseJSON.area?
+                toastr.error 'El campo Metros (terreno) es requerido'
+              if e.responseJSON.construction_area?
+                toastr.error 'El campo Metros (construcción) es requerido'
+              if e.responseJSON.country?
+                toastr.error 'El campo País es requerido'
+              if e.responseJSON.currency?
+                toastr.error 'Debe elegir un tipo de moneda'
+              if e.responseJSON.description?
+                toastr.error 'El campo Descripción es requerido'
+              if e.responseJSON.price_first?
+                toastr.error 'El campo Precio es requerido'
+              if e.responseJSON.state?
+                toastr.error 'El campo Estado es requerido'
+              if e.responseJSON.title?
+                toastr.error 'El campo Título es requerido'
+            vm.disabled = false
+            toastr.error 'Hubo un error al guardar la publicación.'
+          cache: false
+          contentType: false
+          processData: false
+        })
+        .success () ->
+          console.log 'ok'
           vm.disabled = false
-        error: (e) ->
-          if e.responseJSON?
-            if e.responseJSON.area?
-              toastr.error 'El campo Metros (terreno) es requerido'
-            if e.responseJSON.construction_area?
-              toastr.error 'El campo Metros (construcción) es requerido'
-            if e.responseJSON.country?
-              toastr.error 'El campo País es requerido'
-            if e.responseJSON.currency?
-              toastr.error 'Debe elegir un tipo de moneda'
-            if e.responseJSON.description?
-              toastr.error 'El campo Descripción es requerido'
-            if e.responseJSON.price_first?
-              toastr.error 'El campo Precio es requerido'
-            if e.responseJSON.state?
-              toastr.error 'El campo Estado es requerido'
-            if e.responseJSON.title?
-              toastr.error 'El campo Título es requerido'
+        .error () ->
+          console.log 'bad'
           vm.disabled = false
-          toastr.error 'Hubo un error al guardar la publicación.'
-        cache: false
-        contentType: false
-        processData: false
-      })
-      .success () ->
-        console.log 'ok'
-        vm.disabled = false
-      .error () ->
-        console.log 'bad'
-        vm.disabled = false
+      else
+       toastr.error 'Hubo un error al guardar la publicación.'
       return
 
     vm.fav = (event, selectedPost) ->
