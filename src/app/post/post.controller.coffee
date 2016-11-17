@@ -78,7 +78,7 @@ angular.module 'ubinWeb'
         when 8  then return casaCondominio() # Tipo de publicación Casa condominio
         when 9  then return departamento() # Tipo de publicación Departamento
         when 10 then return loft() # Tipo de publicación Loft
-        when 11 then return pentHouse() # Tipo de publicación 
+        when 11 then return pentHouse() # Tipo de publicación
         when 12 then return edificio() # Tipo de publicación Edificio
         when 13 then return hotel() # Tipo de publicación Hotel
         when 14 then return localComercial() # Tipo de publicación Local comercial
@@ -156,7 +156,7 @@ angular.module 'ubinWeb'
           console.log 'bad'
           vm.disabled = false
       else
-       toastr.error 'Hubo un error al guardar la publicación.'
+        toastr.error 'Hubo un error al guardar la publicación.'
       return
 
     vm.fav = (event, selectedPost) ->
