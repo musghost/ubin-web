@@ -3,7 +3,12 @@
     <div class="col-50">
       <div class="singles">
         <div class="single-img">
-          <img ng-src="{{single.base}}media/{{single.bigPhoto}}">
+          <div ng-if="single.bigPhoto">
+           <img ng-src="{{single.base}}media/{{single.bigPhoto}}">
+          </div>
+          <div ng-if="!single.bigPhoto">
+           <img ng-src="http://api.ubin.mx/media/foto_ubin.png">
+          </div>s
         </div>
         <div class="single-minis">
           <div class="mini" ng-repeat="photo in single.post.photos">
