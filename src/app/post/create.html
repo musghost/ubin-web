@@ -16,7 +16,8 @@
         </label>
         <div class="padding-wrapper">
           <div class="select">
-            <select ng-options="type.id as type.name for type in post.type.publication track by type.id" ng-model="post.post.type_publications" ng-required="post.inmuebles[post.type_property].publication">
+            <select ng-options="type.id as type.name for type in post.type.publication track by type.id" ng-model="post.post.type_publications" ng-required="post.inmuebles[post.type_property].publication"
+            ng-change="post.setRequired(post.post.type_publications,true)">
               <option value=""></option>
             </select>
           </div>
@@ -40,7 +41,7 @@
         </label>
         <div class="padding-wrapper">
           <div class="select">
-            <select ng-options="type.id as type.name for type in post.type.property track by type.id" ng-model="post.post.type_property" ng-change="post.setRequired(post.post.type_property)" ng-required="post.inmuebles[post.type_property].type_property">
+            <select ng-options="type.id as type.name for type in post.type.property track by type.id" ng-model="post.post.type_property" ng-change="post.setRequired(post.post.type_property,false)" ng-required="post.inmuebles[post.type_property].type_property">
               <option value=""></option>
             </select>
           </div>

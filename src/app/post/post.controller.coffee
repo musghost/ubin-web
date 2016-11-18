@@ -75,10 +75,15 @@ angular.module 'ubinWeb'
         vm.neighborhood = result.results
       return
 
-    vm.setRequired = (type) ->
-      for prop in vm.type.property
-        if prop.id == type
-          vm.type_property = prop.name
+    vm.setRequired = (type,publication) ->
+      if publication
+        for prop in vm.type.publication
+          if prop.id == type
+            vm.type_property = prop.name.toUpperCase()
+      else
+        for prop in vm.type.property
+          if prop.id == type
+            vm.type_property = prop.name.toUpperCase()
       
     vm.savePost = ->
       vm.disabled = true
@@ -103,57 +108,48 @@ angular.module 'ubinWeb'
               num++
         if typeof value != 'object'
           formData.append key, value
-      console.log formData
-      if formData.type_property!=''
-        toastr.error 'Tipo de propiedad es requerido'
-        return
 
-      if validation_result.isValid
-        $.ajax({
-          url: "#{api}/publication/"
-          type: 'POST'
-          data: formData
-          async: false
-          headers:
-            'Authorization': "JWT #{LoginUser.getToken()}"
-          success: () ->
-            toastr.success 'Se ha guardado la publicación con éxito'
-            $state.go 'post', {}, {reload: true}
-            vm.disabled = false
-          error: (e) ->
-            if e.responseJSON?
-              if e.responseJSON.area?
-                toastr.error 'El campo Metros (terreno) es requerido'
-              if e.responseJSON.construction_area?
-                toastr.error 'El campo Metros (construcción) es requerido'
-              if e.responseJSON.country?
-                toastr.error 'El campo País es requerido'
-              if e.responseJSON.currency?
-                toastr.error 'Debe elegir un tipo de moneda'
-              if e.responseJSON.description?
-                toastr.error 'El campo Descripción es requerido'
-              if e.responseJSON.price_first?
-                toastr.error 'El campo Precio es requerido'
-              if e.responseJSON.state?
-                toastr.error 'El campo Estado es requerido'
-              if e.responseJSON.title?
-                toastr.error 'El campo Título es requerido'
-            vm.disabled = false
-            toastr.error 'Hubo un error al guardar la publicación.'
-          cache: false
-          contentType: false
-          processData: false
-        })
-        .success () ->
-          console.log 'ok'
+      $.ajax({
+        url: "#{api}/publication/"
+        type: 'POST'
+        data: formData
+        async: false
+        headers:
+          'Authorization': "JWT #{LoginUser.getToken()}"
+        success: () ->
+          toastr.success 'Se ha guardado la publicación con éxito'
+          $state.go 'post', {}, {reload: true}
           vm.disabled = false
-        .error () ->
-          console.log 'bad'
+        error: (e) ->
+          if e.responseJSON?
+            if e.responseJSON.area?
+              toastr.error 'El campo Metros (terreno) es requerido'
+            if e.responseJSON.construction_area?
+              toastr.error 'El campo Metros (construcción) es requerido'
+            if e.responseJSON.country?
+              toastr.error 'El campo País es requerido'
+            if e.responseJSON.currency?
+              toastr.error 'Debe elegir un tipo de moneda'
+            if e.responseJSON.description?
+              toastr.error 'El campo Descripción es requerido'
+            if e.responseJSON.price_first?
+              toastr.error 'El campo Precio es requerido'
+            if e.responseJSON.state?
+              toastr.error 'El campo Estado es requerido'
+            if e.responseJSON.title?
+              toastr.error 'El campo Título es requerido'
           vm.disabled = false
-      else
-        if validation_result.message != ''
-          toastr.error validation_result.message
-        toastr.error 'Hubo un error al guardar la publicación.'
+          toastr.error 'Hubo un error al guardar la publicación.'
+        cache: false
+        contentType: false
+        processData: false
+      })
+      .success () ->
+        console.log 'ok'
+        vm.disabled = false
+      .error () ->
+        console.log 'bad'
+        vm.disabled = false
       return
 
     vm.fav = (event, selectedPost) ->

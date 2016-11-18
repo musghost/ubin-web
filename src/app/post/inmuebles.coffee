@@ -1,8 +1,8 @@
 angular.module('ubinWeb')
   .constant 'inmuebles', {
-    'Casa': {
+    'CASA': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       neighborhood: 'required',
@@ -11,9 +11,9 @@ angular.module('ubinWeb')
       construction_area: 'required',
       price_first: 'required'
     }
-    'Casa en Condominio': {
+    'CASA EN CONDOMINIO': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       neighborhood: 'required',
@@ -22,9 +22,9 @@ angular.module('ubinWeb')
       construction_area: 'required',
       price_first: 'required'
     }
-    'Departamento': {
+    'DEPARTAMENTO': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       neighborhood: 'required',
@@ -32,9 +32,9 @@ angular.module('ubinWeb')
       construction_area: 'required',
       price_first: 'required'
     }
-    'Loft': {
+    'LOFT': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       neighborhood: 'required',
@@ -42,9 +42,9 @@ angular.module('ubinWeb')
       construction_area: 'required',
       price_first: 'required'
     }
-    'Penthouse': {
+    'PENTHOUSE': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       neighborhood: 'required',
@@ -52,9 +52,9 @@ angular.module('ubinWeb')
       construction_area: 'required',
       price_first: 'required'
     }
-    'Edificio': {
+    'EDIFICIO': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       neighborhood: 'required',
@@ -63,9 +63,9 @@ angular.module('ubinWeb')
       construction_area: 'required',
       price_first: 'required'
     }
-    'Hotel': {
+    'HOTEL': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       neighborhood: 'required',
@@ -74,9 +74,9 @@ angular.module('ubinWeb')
       construction_area: 'required',
       price_first: 'required'
     }
-    'Local Comercial': {
+    'LOCAL COMERCIAL': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       neighborhood: 'required',
@@ -84,9 +84,9 @@ angular.module('ubinWeb')
       construction_area: 'required',
       price_first: 'required'
     }
-    'Oficina': {
+    'OFICINA': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       neighborhood: 'required',
@@ -94,9 +94,9 @@ angular.module('ubinWeb')
       construction_area: 'required',
       price_first: 'required'
     }
-    'Terreno': {
+    'TERRENO': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       neighborhood: 'required',
@@ -104,9 +104,9 @@ angular.module('ubinWeb')
       area: 'required',
       price_first: 'required'
     }
-    'Bodega': {
+    'BODEGA': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       neighborhood: 'required',
@@ -114,9 +114,9 @@ angular.module('ubinWeb')
       construction_area: 'required',
       price_first: 'required'
     }
-    'Nave Industrial': {
+    'NAVE INDUSTRIAL': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       neighborhood: 'required',
@@ -124,9 +124,9 @@ angular.module('ubinWeb')
       construction_area: 'required',
       price_first: 'required'
     }
-    'Rancho': {
+    'RANCHO': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       neighborhood: 'required',
@@ -134,9 +134,9 @@ angular.module('ubinWeb')
       area: 'required',
       price_first: 'required'
     }
-    'Quinta': {
+    'QUINTA': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       neighborhood: 'required',
@@ -144,9 +144,9 @@ angular.module('ubinWeb')
       area: 'required',
       price_first: 'required'
     }
-    'Hacienda': {
+    'HACIENDA': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       neighborhood: 'required',
@@ -154,9 +154,9 @@ angular.module('ubinWeb')
       construction_area: 'required',
       price_first: 'required'
     }
-    'Finca': {
+    'FINCA': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       neighborhood: 'required',
@@ -164,38 +164,46 @@ angular.module('ubinWeb')
       construction_area: 'required',
       price_first: 'required'
     }
-    'Cama Náutica': {
+    'CAMA NÁUTICA': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       description: 'required',
       price_first: 'required'
     }
-    'Habitación': {
+    'HABITACIÓN': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       neighborhood: 'required',
       description: 'required',
       price_first: 'required'
     }
-    'Estacionamiento': {
+    'ESTACIONAMINETO': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       neighborhood: 'required',
       description: 'required',
       price_first: 'required'
     }
-    'Tiempo compartido': {
+    'TIEMPO COMPARTIDO': {
       title: 'required',
-      publication: 'required',
+      type_publications: 'required',
       type_property: 'required',
       town: 'required',
       neighborhood: 'required',
+      description: 'required',
+      price_first: 'required'
+    }
+    'CLIENTE BUSCA': {
+      title: 'required',
+      type_publications: 'required',
+      type_property: 'required',
+      town: 'required',
       description: 'required',
       price_first: 'required'
     }
