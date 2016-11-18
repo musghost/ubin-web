@@ -30,9 +30,11 @@ angular.module 'ubinWeb'
           current.publication
     vm.fav = Fav.fav
     return
-  .controller 'PostController', ($scope, $state, Crud, $http, LoginUser, base, api, toastr, $cookies) ->
+  .controller 'PostController', ($scope, $state, Crud, $http, LoginUser, base, api, toastr, $cookies, inmuebles) ->
     'ngInject'
     vm = @
+
+    vm.inmuebles = inmuebles
 
     vm.base = base
 
@@ -73,85 +75,11 @@ angular.module 'ubinWeb'
         vm.neighborhood = result.results
       return
 
-    vm.all = (data)->
-      if not data.canvas_number? or data.canvas_number is ''
-        return {isValid:false,message:'Casa es requerido'}
-      if not data.type_property? or  data.type_property is ''
-        return {isValid:false,message:'Tipo de propiedad es requerido'}
-      if not data.title? or data.title is ''
-        return {isValid:false,message:'Título es requerido'}
-      if not data.description? or data.description is ''
-        return {isValid:false,message:'Descripción es requerido'}
-      if not data.price_first? or price_first is ''
-        return {isValid:false,message:'Casa es requerido'}
-      if not data.currency? or data.currency is ''
-        return {isValid:false,message:'Moneda es requerido'}
-      if not data.bathrooms? or data.bathrooms is ''
-        return {isValid:false,message:'Baños es requerido'}
-      if not data.antiquity? or data.antiquity is ''
-        return {isValid:false,message:'Antigüedad es requerido'}
-      if not data.area? or data.area is ''
-        return {isValid:false,message:'Metros(terreno) es requerido'}
-      if not data.construction_area? or data.construction_area is ''
-        return {isValid:false,message:'Metros(construcción) de construcción es requerido'}
-      if not data.code? or data.code is ''
-        return {isValid:false,message:'Código es requerido'}
-      if not data.price_appraisal? or data.price_appraisal is ''
-        return {isValid:false,message:'Avalúo es requerido'}
-      if not data.legal_status? or data.legal_status is ''
-        return {isValid:false,message:'Estatus legal es requerido'}
-      if not data.state? or data.state is ''
-        return {isValid:false,message:'Estado legal es requerido'}
-      if not data.town? or data.town is ''
-        return {isValid:false,message:'Municipio legal es requerido'}
-      if not data.neighborhood? or data.neighborhood is ''
-        return {isValid:false,message:'Colonia es requerido'}
-      if not data.currency? or data.currency is ''
-        return {isValid:false,message:'Colonia es requerido'}
-      return {isValid:true,message:''}
-
-    vm.casa = (data)->
-      if not data.type_property? or  data.type_property is ''
-        return {isValid:false,message:'Tipo de propiedad es requerido'}
-      if not data.type_publications? or  data.type_publications is ''
-        return {isValid:false,message:'Tipo de publicación es requerido'}
-      if not data.title? or data.title is ''
-        return {isValid:false,message:'Título es requerido'}
-      if not data.state? or data.state is ''
-        return {isValid:false,message:'Estado legal es requerido'}
-      if not data.town? or data.town is ''
-        return {isValid:false,message:'Municipio legal es requerido'}
-      if not data.neighborhood? or data.neighborhood is ''
-        return {isValid:false,message:'Colonia es requerido'}
-      if not data.description? or data.description is ''
-        return {isValid:false,message:'Descripción es requerido'}
-      if not data.area? or data.area is ''
-        return {isValid:false,message:'Metros(terreno) es requerido'}
-      if not data.construction_area? or data.construction_area is ''
-        return {isValid:false,message:'Metros(construcción) de construcción es requerido'}
-      if not data.price_first? or price_first is ''
-        return {isValid:false,message:'Casa es requerido'}
-      return {isValid:true,message:''}
-
-
-    vm.validateForm = (formData) ->
-      switch formData.type_property
-        when 7  then return casa() # Tipo de propiedad Casa
-        when 8  then return casaCondominio() # Tipo de propiedad Casa condominio
-        when 9  then return departamento() # Tipo de propiedad Departamento
-        when 10 then return loft() # Tipo de propiedad Loft
-        when 11 then return pentHouse() # Tipo de propiedad PenHouse
-        when 12 then return edificio() # Tipo de propiedad Edificio
-        when 13 then return hotel() # Tipo de propiedad Hotel
-        when 14 then return localComercial() # Tipo de propiedad Local comercial
-        when 15 then return oficina() # Tipo de propiedad Oficina
-        when 16 then return terreno() # Tipo de proiedad Terreno
-        when 17 then return bodega() # Tipo de propiedad Bodega
-        when 18 then return rancho() # Tipo de propiedad Rancho
-        when 19 then return quinta() # Tipo de propiedad Quinta
-        when 20 then return hacienda() # Tipo de propiedad Hacienda
-        when 21 then return camaNautica() # Tipo de propiedad Cama Nautica
-        else return true
+    vm.setRequired = (type) ->
+      for prop in vm.type.property
+        if prop.id == type
+          vm.type_property = prop.name
+      
     vm.savePost = ->
       vm.disabled = true
       formatDate = () ->
@@ -179,7 +107,7 @@ angular.module 'ubinWeb'
       if formData.type_property!=''
         toastr.error 'Tipo de propiedad es requerido'
         return
-      validation_result=validateForm(formData)
+
       if validation_result.isValid
         $.ajax({
           url: "#{api}/publication/"

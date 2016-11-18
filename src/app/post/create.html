@@ -12,11 +12,11 @@
       </div>
       <div class="form-group">
         <label class="u-label">
-          <span>Tipo de publicación:</span>
+          <span><span class="asterisk" ng-show="post.inmuebles[post.type_property].publication">*</span> Tipo de publicación:</span>
         </label>
         <div class="padding-wrapper">
           <div class="select">
-            <select ng-options="type.id as type.name for type in post.type.publication track by type.id" ng-model="post.post.type_publications">
+            <select ng-options="type.id as type.name for type in post.type.publication track by type.id" ng-model="post.post.type_publications" ng-required="post.inmuebles[post.type_property].publication">
               <option value=""></option>
             </select>
           </div>
@@ -36,11 +36,11 @@
       </div>
       <div class="form-group">
         <label class="u-label">
-          <span>Tipo de inmueble:</span>
+          <span><span class="asterisk" ng-show="post.inmuebles[post.type_property].type_property">*</span> Tipo de inmueble:</span>
         </label>
         <div class="padding-wrapper">
           <div class="select">
-            <select ng-options="type.id as type.name for type in post.type.property track by type.id" ng-model="post.post.type_property">
+            <select ng-options="type.id as type.name for type in post.type.property track by type.id" ng-model="post.post.type_property" ng-change="post.setRequired(post.post.type_property)" ng-required="post.inmuebles[post.type_property].type_property">
               <option value=""></option>
             </select>
           </div>
@@ -51,11 +51,11 @@
         <div class="col-sm-6">
           <div class="form-group">
             <label class="u-label">
-              <span>Municipio:</span>
+              <span><span class="asterisk" ng-show="post.inmuebles[post.type_property].town">*</span> Municipio:</span>
             </label>
             <div class="padding-wrapper">
               <div class="select">
-                <select ng-options="type.id as type.name for type in post.minucipalities track by type.id" ng-model="post.post.town" ng-change="post.setNeighborhood()" ng-disabled="!post.state">
+                <select ng-options="type.id as type.name for type in post.minucipalities track by type.id" ng-model="post.post.town" ng-change="post.setNeighborhood()" ng-disabled="!post.state" ng-required="post.inmuebles[post.type_property].town">
                   <option value=""></option>
                 </select>
               </div>
@@ -65,11 +65,11 @@
         <div class="col-sm-6">
           <div class="form-group">
             <label class="u-label">
-              <span>Colonia:</span>
+              <span><span class="asterisk" ng-show="post.inmuebles[post.type_property].neighborhood">*</span> Colonia:</span>
             </label>
             <div class="padding-wrapper">
               <div class="select">
-                <select ng-options="type.id as type.name for type in post.neighborhood track by type.id" ng-model="post.post.neighborhood"  ng-disabled="!post.state">
+                <select ng-options="type.id as type.name for type in post.neighborhood track by type.id" ng-model="post.post.neighborhood"  ng-disabled="!post.state" ng-required="post.inmuebles[post.type_property].neighborhood">
                   <option value=""></option>
                 </select>
               </div>
@@ -79,28 +79,28 @@
       </div>
       <div class="form-group">
         <label class="u-label">
-          <span>Título de la publicación:</span>
+          <span><span class="asterisk" ng-show="post.inmuebles[post.type_property].title">*</span> Título de la publicación:</span>
         </label>
         <div class="padding-wrapper">
-          <input type="text" class="form-control" ng-model="post.post.title">
+          <input type="text" class="form-control" ng-model="post.post.title" ng-required="post.inmuebles[post.type_property].title">
         </div>
       </div>
       <div class="form-group">
         <label class="u-label">
-          <span>Descripción del anuncio:</span>
+          <span><span class="asterisk" ng-show="post.inmuebles[post.type_property].description">*</span> Descripción del anuncio:</span>
         </label>
         <div class="padding-wrapper">
-          <input type="text" class="form-control" ng-model="post.post.description">
+          <input type="text" class="form-control" ng-model="post.post.description" ng-required="post.inmuebles[post.type_property].description">
         </div>
       </div>
       <div class="row">
         <div class="col-sm-6">
           <div class="form-group">
             <label class="u-label">
-              <span>Precio:</span>
+              <span><span class="asterisk" ng-show="post.inmuebles[post.type_property].price_first">*</span> Precio:</span>
             </label>
             <div class="padding-wrapper">
-              <input type="text" class="form-control" ng-model="post.post.price_first">
+              <input type="text" class="form-control" ng-model="post.post.price_first" ng-required="post.inmuebles[post.type_property].price_first">
             </div>
           </div>
         </div>
@@ -168,20 +168,20 @@
         <div class="col-sm-6">
           <div class="form-group">
             <label class="u-label">
-              <span>Metros (terreno):</span>
+              <span><span class="asterisk" ng-show="post.inmuebles[post.type_property].area">*</span> Metros (terreno):</span>
             </label>
             <div class="padding-wrapper">
-              <input type="text" class="form-control" ng-model="post.post.area">
+              <input type="text" class="form-control" ng-model="post.post.area" ng-required="post.inmuebles[post.type_property].area">
             </div>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="form-group">
             <label class="u-label">
-              <span>Metros (construcción):</span>
+              <span><span class="asterisk" ng-show="post.inmuebles[post.type_property].construction_area">*</span> Metros (construcción):</span>
             </label>
             <div class="padding-wrapper">
-              <input type="text" class="form-control" ng-model="post.post.construction_area">
+              <input type="text" class="form-control" ng-model="post.post.construction_area" ng-required="post.inmuebles[post.type_property].construction_area">
             </div>
           </div>
         </div>
