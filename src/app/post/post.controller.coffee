@@ -75,7 +75,7 @@ angular.module 'ubinWeb'
         vm.neighborhood = result.results
       return
 
-    vm.setRequired = (type,publication) ->
+    vm.setRequired = (type, publication) ->
       if publication
         for prop in vm.type.publication
           if prop.id == type

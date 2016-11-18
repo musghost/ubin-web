@@ -141,7 +141,7 @@
       </div>
       <div class="row">
         <div class="col-sm-6">
-          <div class="form-group">
+          <div class="form-group" ng-hide="post.inmuebles[post.type_property].bath_hide">
             <label class="u-label">
               <span>Baños:</span>
             </label>
@@ -167,7 +167,7 @@
       </div>
       <div class="row">
         <div class="col-sm-6">
-          <div class="form-group">
+          <div class="form-group" ng-hide="post.inmuebles[post.type_property].area_hide">
             <label class="u-label">
               <span><span class="asterisk" ng-show="post.inmuebles[post.type_property].area">*</span> Metros (terreno):</span>
             </label>
@@ -177,7 +177,7 @@
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="form-group">
+          <div class="form-group" ng-hide="post.inmuebles[post.type_property].construction_area_hide">
             <label class="u-label">
               <span><span class="asterisk" ng-show="post.inmuebles[post.type_property].construction_area">*</span> Metros (construcción):</span>
             </label>

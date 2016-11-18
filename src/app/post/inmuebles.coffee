@@ -30,7 +30,8 @@ angular.module('ubinWeb')
       neighborhood: 'required',
       description: 'required',
       construction_area: 'required',
-      price_first: 'required'
+      price_first: 'required',
+      construction_area_hide: true
     }
     'LOFT': {
       title: 'required',
@@ -40,7 +41,8 @@ angular.module('ubinWeb')
       neighborhood: 'required',
       description: 'required',
       construction_area: 'required',
-      price_first: 'required'
+      price_first: 'required',
+      construction_area_hide: true
     }
     'PENTHOUSE': {
       title: 'required',
@@ -50,7 +52,8 @@ angular.module('ubinWeb')
       neighborhood: 'required',
       description: 'required',
       construction_area: 'required',
-      price_first: 'required'
+      price_first: 'required',
+      construction_area_hide: true
     }
     'EDIFICIO': {
       title: 'required',
@@ -61,7 +64,8 @@ angular.module('ubinWeb')
       description: 'required',
       area: 'required',
       construction_area: 'required',
-      price_first: 'required'
+      price_first: 'required',
+      bath_hide: true
     }
     'HOTEL': {
       title: 'required',
@@ -72,7 +76,8 @@ angular.module('ubinWeb')
       description: 'required',
       area: 'required',
       construction_area: 'required',
-      price_first: 'required'
+      price_first: 'required',
+      bath_hide: true
     }
     'LOCAL COMERCIAL': {
       title: 'required',
@@ -103,6 +108,7 @@ angular.module('ubinWeb')
       description: 'required',
       area: 'required',
       price_first: 'required'
+      construction_area_hide: true
     }
     'BODEGA': {
       title: 'required',
@@ -179,7 +185,8 @@ angular.module('ubinWeb')
       town: 'required',
       neighborhood: 'required',
       description: 'required',
-      price_first: 'required'
+      price_first: 'required',
+      area_hide: true
     }
     'ESTACIONAMINETO': {
       title: 'required',
