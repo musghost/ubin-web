@@ -158,8 +158,8 @@ angular.module('ubinWeb')
       neighborhood: 'required',
       description: 'required',
       area: 'required',
-      price_first: 'required'
-      construction_area_hide: false
+      price_first: 'required',
+      construction_area_hide: true
     }
     'FINCA': {
       title: 'required',
@@ -170,7 +170,7 @@ angular.module('ubinWeb')
       description: 'required',
       area: 'required',
       price_first: 'required',
-      construction_area_hide: false
+      construction_area_hide: true
     }
     'CAMA NÁUTICA': {
       title: 'required',
