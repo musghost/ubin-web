@@ -190,7 +190,7 @@ angular.module('ubinWeb')
       price_first: 'required',
       area_hide: true
     }
-    'ESTACIONAMINETO': {
+    'ESTACIONAMIENTO': {
       title: 'required',
       type_publications: 'required',
       type_property: 'required',
