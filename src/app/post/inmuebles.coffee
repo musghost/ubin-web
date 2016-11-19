@@ -31,7 +31,7 @@ angular.module('ubinWeb')
       description: 'required',
       construction_area: 'required',
       price_first: 'required',
-      construction_area_hide: true
+      area_hide: true
     }
     'LOFT': {
       title: 'required',
@@ -42,7 +42,7 @@ angular.module('ubinWeb')
       description: 'required',
       construction_area: 'required',
       price_first: 'required',
-      construction_area_hide: true
+      area_hide: true
     }
     'PENTHOUSE': {
       title: 'required',
@@ -53,7 +53,7 @@ angular.module('ubinWeb')
       description: 'required',
       construction_area: 'required',
       price_first: 'required',
-      construction_area_hide: true
+      area_hide: true
     }
     'EDIFICIO': {
       title: 'required',
@@ -157,8 +157,9 @@ angular.module('ubinWeb')
       town: 'required',
       neighborhood: 'required',
       description: 'required',
-      construction_area: 'required',
+      area: 'required',
       price_first: 'required'
+      construction_area_hide: false
     }
     'FINCA': {
       title: 'required',
@@ -167,8 +168,9 @@ angular.module('ubinWeb')
       town: 'required',
       neighborhood: 'required',
       description: 'required',
-      construction_area: 'required',
-      price_first: 'required'
+      area: 'required',
+      price_first: 'required',
+      construction_area_hide: false
     }
     'CAMA NÁUTICA': {
       title: 'required',
