@@ -30,9 +30,11 @@ angular.module 'ubinWeb'
           current.publication
     vm.fav = Fav.fav
     return
-  .controller 'PostController', ($scope, $state, Crud, $http, LoginUser, base, api, toastr, $cookies) ->
+  .controller 'PostController', ($scope, $state, Crud, $http, LoginUser, base, api, toastr, $cookies, inmuebles) ->
     'ngInject'
     vm = @
+
+    vm.inmuebles = inmuebles
 
     vm.base = base
 
@@ -73,6 +75,16 @@ angular.module 'ubinWeb'
         vm.neighborhood = result.results
       return
 
+    vm.setRequired = (type, publication) ->
+      if publication
+        for prop in vm.type.publication
+          if prop.id == type
+            vm.type_property = prop.name.toUpperCase()
+      else
+        for prop in vm.type.property
+          if prop.id == type
+            vm.type_property = prop.name.toUpperCase()
+      
     vm.savePost = ->
       vm.disabled = true
       formatDate = () ->
@@ -96,6 +108,7 @@ angular.module 'ubinWeb'
               num++
         if typeof value != 'object'
           formData.append key, value
+
       $.ajax({
         url: "#{api}/publication/"
         type: 'POST'

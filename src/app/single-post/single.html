@@ -3,7 +3,12 @@
     <div class="col-50">
       <div class="singles">
         <div class="single-img">
-          <img ng-src="{{single.base}}media/{{single.bigPhoto}}">
+          <div ng-if="single.bigPhoto">
+           <img ng-src="{{single.base}}media/{{single.bigPhoto}}">
+          </div>
+          <div ng-if="!single.bigPhoto">
+           <img ng-src="http://api.ubin.mx/media/foto_ubin.png">
+          </div>s
         </div>
         <div class="single-minis">
           <div class="mini" ng-repeat="photo in single.post.photos">
@@ -48,7 +53,7 @@ Colonia: {{single.post.neighborhood.name}}</p>
         <p>Precio: ${{single.post.price_first}} {{single.post.currency.code}}</p>
 
         <p>Baños: {{single.post.bathrooms}} <br>
-Antiguedad: {{single.post.antiquity}} años</p>
+Antigüedad: {{single.post.antiquity}} años</p>
 
         <p>Terreno: {{single.post.area}} m2<br>
 Construcción: {{single.post.construction_area}} m2</p>

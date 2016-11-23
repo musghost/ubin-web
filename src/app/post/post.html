@@ -1,3 +1,8 @@
+<style type="text/css">
+  .post .post-image-background {
+   background-image: url('http://api.ubin.mx/media/foto_ubin.png');
+  }
+</style>
 <div ui-view>
   <div class="row">
     <div class="col-sm-8">
@@ -11,7 +16,12 @@
       <div class="post">
         <div class="post-image">
           <a ui-sref="single({id: p.id})" class="post-link">
-            <div class="post-image-background" style="background-image: url('{{post.base}}media/{{p.photos[0].hash_name}}');"></div>
+            <div ng-if="p.photos[0].hash_name">
+                <div class="post-image-background" style="background-image: url('{{post.base}}media/{{p.photos[0].hash_name}}');"></div>
+            </div>
+            <div ng-if="!p.photos[0].hash_name">
+                <div class="post-image-background"></div>
+            </div>
           </a>
           <a href="#" class="star" ng-class="{fav: p.isfavorite}" ng-click="post.fav($event, p)"></a>
           <a ui-sref="single({id: p.id})" class="action">{{p.type_publications.name}}</a>
