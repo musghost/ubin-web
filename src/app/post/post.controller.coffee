@@ -64,7 +64,7 @@ angular.module 'ubinWeb'
     Crud.legalStatus.query({page_size: 100}).$promise.then (result) ->
       vm.type.legal = result.results
 
-    Crud.publicationsFilter.query({user__id: LoginUser.getId()}).$promise.then (result) ->
+    Crud.publicationsFilter.query({page_size: 100, user__id: LoginUser.getId()}).$promise.then (result) ->
       vm.posts = result.results
 
     vm.post =
@@ -84,7 +84,7 @@ angular.module 'ubinWeb'
         for prop in vm.type.property
           if prop.id == type
             vm.type_property = prop.name.toUpperCase()
-      
+
     vm.savePost = ->
       vm.disabled = true
       formatDate = () ->
@@ -104,7 +104,7 @@ angular.module 'ubinWeb'
           if value?
             num = 0
             for key, val of value
-              formData.append "photo_#{num}", val
+              formData.append "#{num}", val
               num++
         if typeof value != 'object'
           formData.append key, value
@@ -195,11 +195,11 @@ angular.module 'ubinWeb'
     Crud.publicationsFilter.query({id: $stateParams.id}).$promise.then (post) ->
       vm.post = post.results[0]
       vm.post.currency = vm.post.currency.id
-      
+
       ###vm.post.town = vm.post.town.id
       vm.post.state = vm.post.state.id
       vm.post.neighborhood = vm.post.neighborhood.id###
-      
+
       Crud.townFilter.query({state__id: vm.post.state.id, page_size: 100, ordering: 'name'}).$promise.then (result) ->
         vm.minucipalities = result.results.map (town) -> {id: town.id, name: town.name}
 
