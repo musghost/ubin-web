@@ -55,7 +55,7 @@ angular.module 'ubinWeb'
       vm.type.publication = result.results
     Crud.typeProperty.query({page_size: 100}).$promise.then (result) ->
       vm.type.property = result.results
-    Crud.townFilter.query({state__id: LoginUser.getLocation().state, page_size: 100, ordering: 'name'}).$promise.then (result) ->
+    Crud.townFilter.query({state__id: LoginUser.getLocation().state, page_size: 1000, ordering: 'name'}).$promise.then (result) ->
       vm.minucipalities = result.results
     Crud.currencies.query().$promise.then (result) ->
       vm.currencies = result
@@ -200,7 +200,7 @@ angular.module 'ubinWeb'
       vm.post.state = vm.post.state.id
       vm.post.neighborhood = vm.post.neighborhood.id###
 
-      Crud.townFilter.query({state__id: vm.post.state.id, page_size: 100, ordering: 'name'}).$promise.then (result) ->
+      Crud.townFilter.query({state__id: vm.post.state.id, page_size: 1000, ordering: 'name'}).$promise.then (result) ->
         vm.minucipalities = result.results.map (town) -> {id: town.id, name: town.name}
 
       Crud.neighborhoodFilter.query({town__id: vm.post.town.id, page_size: 1000, ordering: 'name'}).$promise.then (result) ->
